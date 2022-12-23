@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="576" height="512">
+	<title>Historic-svg</title>
+	<style>
+		.s0 { fill: #ffffff } 
+	</style>
+	<g id="Page-1">
+		<g id="icon-75-document-star">
+			<path id="document-star" fill-rule="evenodd" class="s0" d="m335.2 116.4c0 20.8 16.8 37.3 37.5 37.3h93.3v317.7c0 20.7-16.7 37.3-37.3 37.3h-280.4c-20.7 0-37.3-16.8-37.3-37.5v-429.4c0-20.8 16.8-37.5 37.5-37.5h186.7zm130.8 18.6h-93.6c-10.1 0-18.5-8.4-18.5-18.7v-112.1zm-102.8 299l-28-93.5 74.7-56h-93.4l-28-93.4-28 93.4h-93.5l74.8 56-28 93.5 74.7-56.1z"/>
+		</g>
+	</g>
+</svg>

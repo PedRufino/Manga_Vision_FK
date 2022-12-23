@@ -1,0 +1,80 @@
+{% extends 'BaseVision.html' %}
+{% load static %}
+{% block titulo %}Manga Vision{% endblock %}
+{% block body %}
+    <h1 class="neon-vision">Bem-Vindo ao Manga Vision!!</h1>
+        <div>
+            <h2 class="font">Lançamentos</h2>
+        </div>
+        <div class="carousel" data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
+            {% for info_manga in all_mangas_list %}
+                <div class="carousel-cell">
+                    <div class="card">
+                        <a class="acard" href="manga/{{ info_manga.slug }}" title="Ler {{ info_manga.title }} Online!"><img class="card-img-top unic" src="{{ info_manga.url_img.url }}" alt="{{ info_manga.title }}"></a>
+                        <div class="card-body">
+                            <a href="manga/{{ info_manga.slug }}" title="Ler {{ info_manga.title }} Online!">
+                                <h5 class="card-title1">{{ info_manga.title }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-8 black-vision">
+                <h2 class="font2">Últimos Adicionados</h2>
+                <div class="manga-releases">
+                    {% for MgLanca in Lancamentos  %}
+                        <div class="manga-item">
+                            <div class="mv_img">
+                                <img src="{{ MgLanca.url_img.url }}" alt="">
+                            </div>
+                            <div class="rl-content">
+                                <span class="rl-title"><a class="title" href="#">{{ MgLanca.title }}</a></span>
+                                <span class="rl-genre">{{ MgLanca.genero }}</span>
+                                <div class="rl-snps">
+                                    <span class="rl-sinopse">{{ MgLanca.sinopse }}</span>
+                                </div>
+                                <div class="rl-chaps">
+                                    <li><a class="rl-link" href="#">1</a></li>
+                                    <li><a class="rl-link" href="#">2</a></li>
+                                    <li><a class="rl-link" href="#">3</a></li>
+                                    <li><a class="rl-link" href="#">4</a></li>
+                                    <li><a class="rl-link" href="#">5</a></li>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="manga-views black-vision">
+                        <h2 class="font2">Vision Notepad</h2>
+                        <div>
+                            <textarea class="textList" id="myTextarea" placeholder="Crie sua Lista..."></textarea>
+                        </div>
+                    </div>
+                    <div class="col-twitter black-vision">
+                        <a class="twitter-timeline" data-lang="pt" data-theme="dark" href="https://twitter.com/MangaVision1?ref_src=twsrc%5Etfw">Tweets by MangaVision1</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </div>
+                <div class="manga-views black-vision">
+                    <h2 class="font2" style="margin-top: 20px;">Mais Lidos</h2>
+                    {% for ML in MaisLidos %}
+                        <div class="manga-item">
+                            <div><img class="rl-trofeu" src="{{ ML.url_trofeu }}"></div>
+                            <div class="mv_img2">
+                                <a href="manga/{{ ML.slug }}" title="Ler {{ ML.title }} Online!"><img src="{{ ML.url_img.url }}" alt="{{ ML.title }}"></a>
+                            </div>
+                            <div class="rl-content">
+                                <span class="rl-title"><a class="title" title="Ler {{ ML.title }} Online!" href="manga/{{ ML.slug }}">{{ ML.title }}</a></span>
+                                <span class="rl-genre">{{ ML.genero }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}

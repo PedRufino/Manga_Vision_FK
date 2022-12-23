@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Groteska';
+    src: url(../Fontes/FontsFree-Net-Groteska-Regular.ttf) format('opentype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Proda Sans';
+    src: url(../Fontes/NasirUdin-ProdaSans-Medium.otf) format('opentype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Anime';
+    src: url(../Fontes/Anime_Inept.otf) format('opentype');
+    font-weight: normal;
+}

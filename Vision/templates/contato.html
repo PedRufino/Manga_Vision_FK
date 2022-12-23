@@ -1,0 +1,43 @@
+{% extends 'BaseVision.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/contato.css' %}">
+{% endblock %}
+{% block titulo %}Contatos e Outros{% endblock %}
+{% block body %}
+    <div class="test">
+        <div class="row">
+            <div class="cont2 col-md-6">
+                {% bootstrap_messages %}
+                <div class="cont3">
+                    <img src="{% static 'img/MangaVision-ajustado.svg' %}" width="30%" alt="Test">
+                    <dt class="positive">Ficaremos contentes em ler e, sempre que possível, responder os emails da seguinte natureza:</dt>
+                        <dd>– Críticas sobre o funcionamento de nosso sistema;</dd>
+                        <dd>– Dúvidas relacionadas ao funcionamento do site;</dd>
+                        <dd>– Projetos inovadores interessados em parcerias/divulgação;</dd>
+                        <dd>– Interessados em trabalhar conosco.</dd>
+                    <p>
+                    <dt class="negative">Ignoraremos emails que sejam relacionados aos seguintes temas</dt>
+                        <dd>– Dúvidas relacionadas aos horários de lançamento das séries;</dd>
+                        <dd>– Críticas relacionadas aos fansubs;</dd>
+                        <dd>– Questionamento sobre atrasos.
+                    <p>
+                    <dt class="normal">Sugestões de séries para serem adicionadas em nosso site podem ser sugeridas em nosso discord ou em nossas redes sociais (Discord de preferência)</>
+                </div>
+                </div>
+            <div class="col-md-6">
+                <form action="{% url 'contato.html' %}" method="post" class="form-control size" autocomplete="off">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                    <div class="div-center">
+                        <button type="submit" class="btn btn-success">Enviar Mensagem</button>
+                    </div>
+                    {% endbuttons %}
+                </form>
+            </div>
+        </div>
+    </div>
+    {% bootstrap_javascript %}
+{% endblock %}

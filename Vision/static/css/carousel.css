@@ -1,0 +1,139 @@
+.carousel-cell {
+    margin-right: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+a.cd-link {
+    color: white;
+    text-decoration: none;
+}
+
+.card-title1:hover {
+    color: #B3C23F;
+}
+
+
+/* Card dos Mangas */
+.isso {
+    background-color: rgba(0, 0, 0, 0.3);
+    /* padding-top: 50px; */
+    margin: auto;
+    text-align: center;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+.card {
+    border: 0px;
+    background-color: transparent;
+}
+
+.dis {
+    display: inline-flex;
+    text-decoration-line: none;
+    padding: 10px;
+    margin: auto;
+}
+
+.card-body {
+    margin-right: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+a.cd-link {
+    color: white;
+    text-decoration: none;
+}
+
+.card-title1:hover {
+    color: #B3C23F;
+}
+
+
+/* Card dos Mangas */
+.isso {
+    background-color: rgba(0, 0, 0, 0.3);
+    /* padding-top: 50px; */
+    margin: auto;
+    text-align: center;
+}
+
+.unic {
+    width: 150px;
+    height: 230px;
+}
+
+h5 {
+    font-size: 14px;
+    width: 153px;
+}
+
+.card {
+    border: 0px;
+    background-color: transparent;
+    align-items: center;
+    width: 153px;
+}
+
+.dis {
+    display: inline-flex;
+    text-decoration-line: none;
+    padding: 10px;
+    margin: auto;
+}
+
+.card-body {
+    /* padding: 0px; */
+    padding-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #ddd;
+}
+
+.card-title1 {
+    margin: 0;
+    color: #fff;
+    text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+    .dis {
+        text-decoration-line: none;
+        padding: 10px;
+    }
+
+    .imgs {
+        width: 100%;
+        margin-top: -10%;
+    }
+}
+
+.card-title1 {
+    margin: 0;
+    color: #fff;
+    text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+    .dis {
+        text-decoration-line: none;
+        padding: 10px;
+    }
+
+    .imgs {
+        width: 100%;
+        margin-top: -10%;
+    }
+}

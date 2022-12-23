@@ -1,0 +1,75 @@
+{% load bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static  'img/LogoFavicon/Logo-Vision.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/flickity.pkgd.js' %}"></script>
+    {% block head %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/NavBar_new.css' %}">
+    <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flickity.css' %}">
+    <link rel="stylesheet" href="{% static 'css/scroll.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Site.css' %}">
+    <title>{% block titulo %}{% endblock  %}</title>
+</head>
+<body>
+    <div class="single-manga-bg img-fundo"></div>
+    <nav class="navbar navbar-dark bg-dark" id="menu-vision" aria-label="Dark offcanvas navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/MangaVision-pdf.svg' %}" alt="" width="70"></a>
+            <div>
+                <a class="logos" href="#"><span class="Discord"></span></a>
+                <a class="logos" href="#"><span class="Search"></span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbarDark"
+                aria-labelledby="offcanvasNavbarDarkLabel">
+                <div class="offcanvas-header">
+                    <img class="Mv" src="{% static 'img/MangaVision-ajustado.svg' %}" alt="" width="180" height="70">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active fonte_mv" aria-current="page" href="{% url 'mangas.html' %}"><span class="Book"></span>Mangas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active fonte_mv" href="{% url 'historic.html' %}"><span class="Historic"></span>Históricos e Favoritos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active fonte_mv" href="{% url 'help.html' %}"><span class="Help"></span>Help-me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active fonte_mv" href="{% url 'party.html' %}"><span class="Party"></span>Party</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active fonte_mv" href="{% url 'contato.html' %}"><span class="Contato"></span>Contatos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="mg_site">
+        {% block body %}
+        {% endblock %}
+    </div>
+    <footer>
+        <div class="align-items-end ft-div">
+            <img class="ft-imgs" src="{% static 'img/MangaVision-ajustado.svg' %}" width="180px" height="50" alt="">
+        </div>
+    </footer>
+    <script src="{% static 'js/menu.vision.js' %}"></script>
+</body>
+</html>

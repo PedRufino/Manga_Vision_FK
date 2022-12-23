@@ -1,0 +1,109 @@
+.navbar-dark {
+    background-color: #23232E !important;
+}
+
+.text-bg-dark {
+    background-color: #23232E !important;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.logos {
+    padding-right: 30px;
+}
+
+.Mv {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fonte_mv {
+    font-size: 20px;
+}
+
+.Discord {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    background-image: url(../img/discord.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+}
+
+.Search {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    background-image: url(../img/icons8-search.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.Book {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-image: url(../img/Book.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.Historic {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-image: url(../img/Historic.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.Help {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-image: url(../img/Ajuda.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.Party {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-image: url(../img/União.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.Contato {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-image: url(../img/Contato.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+@media screen and (max-width: 500px) {}

@@ -1,0 +1,351 @@
+@keyframes neon {
+    from {
+        filter: drop-shadow(0px 0px 1px var(--cor-neon));
+    }
+
+    to {
+        filter: drop-shadow(0px 0px 3px var(--cor-neon));
+    }
+}
+
+body {
+    background: url(../img/Tela/pattern-populares.png);
+    background-color: #191a1c;
+    padding-top: 70px !important;
+}
+
+.alert{
+    font-family: 'Groteska';
+}
+
+.img-fundo{
+    background-image: url(../img/CapaFundo.jpg);
+}
+
+.mg_site {
+    margin: 0px 100px;
+    position: relative;
+}
+
+.neon-vision {
+    margin: 50px 0px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: 'Anime', times, serif;
+    font-size: 3em;
+    animation: neon 3s alternate infinite ease-in-out;
+    --cor-neon: #7bff00;
+}
+
+.font {
+    color: #fff;
+}
+
+.font2 {
+    color: #fff;
+    text-align: center;
+}
+
+.black-vision{
+    background-color: rgba(0,0,0,50%) !important;
+    /* background-color: rgba(255,255,255,50%) !important; */
+    color: #fff !important;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+#menu-vision {
+    position: fixed;
+    left: 0;
+    right: 0;
+    transition: top 0.3s ease-out;
+    top: 0;
+    z-index: 5;
+}
+
+/* Bloco de Notas */
+
+.textList{
+    background-image: url(../img/LogoFavicon/Logo2.png);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    background-color: #33333333;
+    color: #fff;
+    padding: 1em;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    outline: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
+    width: 100%;
+    height: 300px;
+    transition: all 0.2s;
+    resize: none;
+}
+
+.textList::placeholder{
+    color: #fff !important;
+}
+
+.textList::-webkit-scrollbar{
+    width: 0;
+}
+
+.textList:hover{
+    cursor: pointer;
+    color: #fff;
+}
+
+.textList:focus{
+    cursor: text;
+    color: rgb(255, 255, 255);
+    border-color: #C7D842;
+}
+
+/* Fim Bloco de Notas */
+
+.row{
+    margin: 0;
+}
+
+/* Fundo do Site */
+
+.single-manga-bg {
+    width: 100%;
+    position: fixed;
+    height: 275px;
+    opacity: .1;
+    filter: blur(0);
+    background-size: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-position: center 25%;
+    transition: width .15s ease-in-out;
+    z-index: -1;
+}
+
+.single-manga-bg:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    background: linear-gradient(180deg, #fff0 0, #191a1c);
+}
+
+.single-manga-bg::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+
+/* Fim do Fundo do Site */
+
+/* Image Caps */
+.manga-page {
+    margin: 0;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+}
+
+.olnopadding {
+    padding: 0;
+}
+
+@media screen and (max-width: 850px) {
+    .mg_site {
+        margin: 0 66px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mg_site {
+        margin: 0 33px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .mg_site {
+        margin: 0 2px;
+    }
+}
+/*Fim Image Caps */
+
+/* Twitter */
+.col-twitter{
+    height: 440px;
+    overflow: auto;
+    display: block;
+}
+
+@media only screen and (max-width: 760px) {
+        .col-twitter{
+            height: 590px;
+            overflow: auto;
+            display: block;
+        }
+    }
+/* Fim Twitter */
+
+/* Cantainers Info */
+.rl-content span{
+    display: block;
+}
+.rl-content {
+    overflow: hidden;
+}
+span.rl-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.rl-trofeu{
+    width: 110px;
+    padding-top: 5px;
+}
+
+.mv_img2 img{
+    width: 80px;
+    height: 110px;
+}
+
+a.title{
+    color: white;
+}
+a.title:hover{
+    color: #b2c23d;
+}
+
+span.rl-genre {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+span.rl-sinopse{
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #979797;
+}
+
+.rl-snps{
+    height: 3.6rem;
+    overflow: auto;
+    left: 500px;
+}
+
+.rl-snps::-webkit-scrollbar {
+    width: 0px;
+}
+
+.mv_img img{
+    width: 100%;
+}
+
+.manga-releases {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.manga-item {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 100px auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.manga-item ol {
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    color: #89898966;
+    line-height: 98px;
+    text-align: center;
+}
+
+.rl-chaps {
+    display: flex;
+    list-style: none;
+    margin-top: 5px;
+}
+
+.rl-chaps li {
+    background: rgba(255, 255, 255, 0.5);
+    margin-right: 5px;
+    padding: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 4px;
+    line-height: 16px;
+}
+
+.rl-chaps li:hover{
+    background: rgba(179, 194, 63, 0.5);
+}
+
+a.rl-link{
+    color: rgb(0, 0, 0);
+}
+
+.manga-views {
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.manga-views .manga-item {
+    display: grid;
+    grid-template-columns: 30px 70px auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.manga-views .rl-snps{
+    height: 3rem;
+    overflow: auto;
+    left: 500px;
+}
+
+/* Fim Cantainers Info */
+
+/* footer */
+.ft-div{
+    padding: 5px;
+}
+
+.ft-imgs{
+    display: block;
+    margin: 0 auto;
+    opacity: 0.5;
+    z-index: 2;
+}
+/* Fim Footer */
+
+/* Formularios */
+.form-control{
+    background-color:rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+/* Fim Formulario */
