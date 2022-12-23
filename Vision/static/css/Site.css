@@ -39,11 +39,13 @@ body {
 
 .font {
     color: #fff;
+    font-family: 'Roboto Regular';
 }
 
 .font2 {
     color: #fff;
     text-align: center;
+    font-family: 'Roboto Regular';
 }
 
 .black-vision{
@@ -87,6 +89,7 @@ body {
     height: 300px;
     transition: all 0.2s;
     resize: none;
+    font-family: 'Roboto Regular';
 }
 
 .textList::placeholder{
@@ -225,26 +228,29 @@ span.rl-title {
 
 a.title{
     color: white;
+    font-family: 'Roboto Regular';
+    letter-spacing: 1px;
 }
 a.title:hover{
     color: #b2c23d;
 }
 
 span.rl-genre {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.2);
+    font-family: 'Roboto Thin';
 }
 
 span.rl-sinopse{
     margin-top: 5px;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-family: 'Groteska';
     color: #979797;
 }
 
 .rl-snps{
-    height: 3.6rem;
+    height: 5.5rem;
     overflow: auto;
     left: 500px;
 }
@@ -281,27 +287,6 @@ span.rl-sinopse{
     color: #89898966;
     line-height: 98px;
     text-align: center;
-}
-
-.rl-chaps {
-    display: flex;
-    list-style: none;
-    margin-top: 5px;
-}
-
-.rl-chaps li {
-    background: rgba(255, 255, 255, 0.5);
-    margin-right: 5px;
-    padding: 8px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 14px;
-    border-radius: 4px;
-    line-height: 16px;
-}
-
-.rl-chaps li:hover{
-    background: rgba(179, 194, 63, 0.5);
 }
 
 a.rl-link{

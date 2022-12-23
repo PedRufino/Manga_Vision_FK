@@ -106,6 +106,8 @@ h5 {
     margin: 0;
     color: #fff;
     text-align: center;
+    font-size: 17px;
+    font-family: 'Roboto Regular';
 }
 
 @media screen and (max-width: 500px) {

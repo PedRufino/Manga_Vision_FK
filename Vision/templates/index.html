@@ -27,20 +27,13 @@
                     {% for MgLanca in Lancamentos  %}
                         <div class="manga-item">
                             <div class="mv_img">
-                                <img src="{{ MgLanca.url_img.url }}" alt="">
+                                <a href="manga/{{ MgLanca.slug }}" title="Ler {{ MgLanca.title }} Online!"><img src="{{ MgLanca.url_img.url }}" alt="{{ MgLanca.title }}"></a>
                             </div>
                             <div class="rl-content">
-                                <span class="rl-title"><a class="title" href="#">{{ MgLanca.title }}</a></span>
+                                <span class="rl-title"><a class="title" href="manga/{{ MgLanca.slug }}" alt="{{ MgLanca.title }}" title="Ler {{ MgLanca.title }} Online!">{{ MgLanca.title }}</a></span>
                                 <span class="rl-genre">{{ MgLanca.genero }}</span>
                                 <div class="rl-snps">
                                     <span class="rl-sinopse">{{ MgLanca.sinopse }}</span>
-                                </div>
-                                <div class="rl-chaps">
-                                    <li><a class="rl-link" href="#">1</a></li>
-                                    <li><a class="rl-link" href="#">2</a></li>
-                                    <li><a class="rl-link" href="#">3</a></li>
-                                    <li><a class="rl-link" href="#">4</a></li>
-                                    <li><a class="rl-link" href="#">5</a></li>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +54,7 @@
                     </div>
                 </div>
                 <div class="manga-views black-vision">
-                    <h2 class="font2" style="margin-top: 20px;">Mais Lidos</h2>
+                    <h2 class="font2" style="margin-top: 20px; margin-bottom: 20px;">Mais Lidos</h2>
                     {% for ML in MaisLidos %}
                         <div class="manga-item">
                             <div><img class="rl-trofeu" src="{{ ML.url_trofeu }}"></div>

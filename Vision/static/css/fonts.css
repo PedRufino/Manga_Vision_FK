@@ -15,3 +15,15 @@
     src: url(../Fontes/Anime_Inept.otf) format('opentype');
     font-weight: normal;
 }
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url(../Fontes/Roboto-Regular.ttf) format('opentype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Thin';
+    src: url(../Fontes/Roboto-Thin.ttf) format('opentype');
+    font-weight: normal;
+}
