@@ -1,7 +1,8 @@
-from .forms import MangasModelForm, ContatoModelForm
+from django.views.generic import TemplateView
+from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
-from .models import mangas, genres, ClickManga
+from .models import mangas, ClickManga
 from datetime import date, timedelta
 
 def manga_reading(request, slug_):
@@ -93,14 +94,24 @@ def index(request):
     }
     
     return render(request, 'index.html', context)
-def list_mangas(request):
-    return render(request, 'mangas.html')
-def party(request):
-    return render(request, 'party.html')
-def help_me(request):
-    return render(request, 'help.html')
-def historic(request):
-    return render(request, 'historic.html')
+
+
+class MangasView(TemplateView):
+    template_name = 'mangas.html'
+
+
+class PartyView(TemplateView):
+    template_name = 'party.html'
+
+
+class HelpView(TemplateView):
+    template_name = 'help.html'
+
+
+class HistoricView(TemplateView):
+    template_name = 'historic.html'
+
+
 def contact(request):
     if str(request.method) == 'POST':
         form = ContatoModelForm(request.POST, request.FILES)
