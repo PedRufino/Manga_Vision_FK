@@ -16,90 +16,69 @@ def manga_reading(request, slug_):
     return render(request, "manga_reading.html")
 
 
-def index(request):
-    manga = mangas.objects.all()
-    """
-        Retorna uma lista de tuplas com as informações dos mangas + generos formatados
-    """
-    all_mangas = []
-    for item in manga:
-        genre_list = []
-        for gen in item.genre.all():
-            genre_list.append(str(gen))
-        genre = ", ".join(genre_list)
+class IndexView(TemplateView):
+    template_name = "index.html"
+    
+    def manga_date(self):
+        start_date = date.today()
+        end_date = start_date - timedelta(days=7)
+        manga_data = mangas.objects.filter(modified__range=[end_date, start_date])
 
-        mg_all = {
-            "id_manga": item.id_manga,
-            "title": item.title,
-            "genero": genre,
-            "data": item.modified,
-            "sinopse": item.sinopse,
-            "slug": item.slug,
-            "url_img": item.capa,
-        }
+        TodayManga = []
+        count = 1
+        for mgDate in manga_data:
+            count += 1
+            genre_list = []
+            for gen in mgDate.genre.all():
+                genre_list.append(str(gen))
+            genre = ", ".join(genre_list)
 
-        all_mangas.append(mg_all)
+            mg_all = {
+                "id_manga": mgDate.id_manga,
+                "title": mgDate.title,
+                "genero": genre,
+                "data": mgDate.modified,
+                "sinopse": mgDate.sinopse,
+                "slug": mgDate.slug,
+                "url_img": mgDate.capa,
+            }
 
-    """
-        Retorna uma lista de tuplas de 3 Mangas com infos e com datas dos ultimos 7 dias
-    """
-    startdate = date.today()
-    enddate = startdate - timedelta(days=7)
-    manga_data = mangas.objects.filter(modified__range=[enddate, startdate])
+            TodayManga.append(mg_all)
+        return TodayManga
 
-    TodayManga = []
-    count = 1
-    for mgDate in manga_data:
-        count += 1
-        genre_list = []
-        for gen in mgDate.genre.all():
-            genre_list.append(str(gen))
-        genre = ", ".join(genre_list)
+    def mais_lidos(self):
+        MaisLidos = []
+        img = [
+            "../static/img/trofeus/taca-de-ouro.png",
+            "../static/img/trofeus/taca-de-prata.png",
+            "../static/img/trofeus/taca-de-bronze.png",
+        ]
+        most_read = mangas.objects.all().order_by("-rank")[:3]
+        x = 0
+        for mgl in most_read:
+            genre_list = []
+            for gen in mgl.genre.all():
+                genre_list.append(str(gen))
+            genre = ", ".join(genre_list)
 
-        mg_all = {
-            "id_manga": mgDate.id_manga,
-            "title": mgDate.title,
-            "genero": genre,
-            "data": mgDate.modified,
-            "sinopse": mgDate.sinopse,
-            "slug": mgDate.slug,
-            "url_img": mgDate.capa,
-        }
+            dict_ = {
+                "title": mgl.title,
+                "slug": mgl.slug,
+                "url_img": mgl.capa,
+                "genero": genre,
+                "url_trofeu": img[x],
+                "rank": mgl.rank,
+            }
+            MaisLidos.append(dict_)
+            x += 1
+        return MaisLidos
 
-        TodayManga.append(mg_all)
-
-    MaisLidos = []
-    img = [
-        "../static/img/trofeus/taca-de-ouro.png",
-        "../static/img/trofeus/taca-de-prata.png",
-        "../static/img/trofeus/taca-de-bronze.png",
-    ]
-    most_read = mangas.objects.all().order_by("-rank")[:3]
-    x = 0
-    for mgl in most_read:
-        genre_list = []
-        for gen in mgl.genre.all():
-            genre_list.append(str(gen))
-        genre = ", ".join(genre_list)
-
-        dict_ = {
-            "title": mgl.title,
-            "slug": mgl.slug,
-            "url_img": mgl.capa,
-            "genero": genre,
-            "url_trofeu": img[x],
-            "rank": mgl.rank,
-        }
-        MaisLidos.append(dict_)
-        x += 1
-
-    context = {
-        "all_mangas_list": all_mangas,
-        "Lancamentos": TodayManga,
-        "MaisLidos": MaisLidos,
-    }
-
-    return render(request, "index.html", context)
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['all_mangas'] = mangas.objects.all()
+        context['lancamentos'] = self.manga_date()
+        context['mais_lidos'] = self.mais_lidos()
+        return context
 
 
 class MangasView(TemplateView):

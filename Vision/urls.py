@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    index,
+    IndexView,
     MangasView,
     PartyView,
     HelpView,
@@ -10,7 +10,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path("", index, name="index"),
+    path("", IndexView.as_view(), name="index"),
     path("lista-de-titulos/", MangasView.as_view(), name="mangas.html"),
     path("historico-favoritos/", HistoricView.as_view(), name="historic.html"),
     path("meu-duo/", PartyView.as_view(), name="party.html"),

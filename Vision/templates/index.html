@@ -7,10 +7,10 @@
             <h2 class="font">Lançamentos</h2>
         </div>
         <div class="carousel" data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
-            {% for info_manga in all_mangas_list %}
+            {% for info_manga in all_mangas %}
                 <div class="carousel-cell">
                     <div class="card">
-                        <a class="acard" href="manga/{{ info_manga.slug }}" title="Ler {{ info_manga.title }} Online!"><img class="card-img-top unic" src="{{ info_manga.url_img.url }}" alt="{{ info_manga.title }}"></a>
+                        <a class="acard" href="manga/{{ info_manga.slug }}" title="Ler {{ info_manga.title }} Online!"><img class="card-img-top unic" src="{{ info_manga.capa.url }}" alt="{{ info_manga.title }}"></a>
                         <div class="card-body">
                             <a href="manga/{{ info_manga.slug }}" title="Ler {{ info_manga.title }} Online!">
                                 <h5 class="card-title1">{{ info_manga.title }}</h5>
@@ -24,7 +24,7 @@
             <div class="col-md-8 black-vision">
                 <h2 class="font2">Últimos Adicionados</h2>
                 <div class="manga-releases">
-                    {% for MgLanca in Lancamentos  %}
+                    {% for MgLanca in lancamentos  %}
                         <div class="manga-item">
                             <div class="mv_img">
                                 <a href="manga/{{ MgLanca.slug }}" title="Ler {{ MgLanca.title }} Online!"><img src="{{ MgLanca.url_img.url }}" alt="{{ MgLanca.title }}"></a>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="manga-views black-vision">
                     <h2 class="font2" style="margin-top: 20px; margin-bottom: 20px;">Mais Lidos</h2>
-                    {% for ML in MaisLidos %}
+                    {% for ML in mais_lidos %}
                         <div class="manga-item">
                             <div><img class="rl-trofeu" src="{{ ML.url_trofeu }}"></div>
                             <div class="mv_img2">
