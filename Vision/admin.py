@@ -1,22 +1,37 @@
 from django.contrib import admin
 from .models import mangas, genres, FormContato, Chapter, Pagina
 
+
 @admin.register(mangas)
 class mangasAdmin(admin.ModelAdmin):
-    list_display = ('id_manga', 'title', 'author', 'modified', 'slug', 'rank', 'in_launch', 'finished', 'Abandoned')
+    list_display = (
+        "id_manga",
+        "title",
+        "author",
+        "modified",
+        "slug",
+        "rank",
+        "in_launch",
+        "finished",
+        "Abandoned",
+    )
+
 
 @admin.register(FormContato)
 class FormContatoAdmin(admin.ModelAdmin):
-    list_display = ('nome','email','assunto','mensagem','data_envio','resolvido')
+    list_display = ("nome", "email", "assunto", "mensagem", "data_envio", "resolvido")
+
 
 @admin.register(genres)
 class genresAdmin(admin.ModelAdmin):
-    list_display = ('id_gender', 'genero')
+    list_display = ("id_gender", "genero")
+
 
 @admin.register(Chapter)
 class genresAdmin(admin.ModelAdmin):
-    list_display = ('capitulo','order', 'texto', 'manga')
+    list_display = ("capitulo", "order", "texto", "manga")
+
 
 @admin.register(Pagina)
 class genresAdmin(admin.ModelAdmin):
-    list_display = ('pg_name', 'order', 'imagem', 'capitulo')
+    list_display = ("pg_name", "order", "imagem", "capitulo")

@@ -24,10 +24,10 @@ from Vision.API import viewsets as visionviewvet
 
 route = routers.DefaultRouter()
 
-route.register(r'v1', visionviewvet.VisionViewSet, basename="MvMangas")
+route.register(r"v1", visionviewvet.VisionViewSet, basename="MvMangas")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(route.urls)),
-    path('', include('Vision.urls')),
+    path("admin/", admin.site.urls),
+    path("api/", include(route.urls)),
+    path("", include("Vision.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

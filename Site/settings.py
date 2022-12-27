@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-at6^gav_hp0zi-&6ehqo*l0+_l8!_0r=mmr9iu5kt-u+sl_$q-
 DEBUG = True
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok.io']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework',
-    'bootstrap5',
-    'stdimage',
-    'Vision',
+    "rest_framework",
+    "bootstrap5",
+    "stdimage",
+    "Vision",
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,7 @@ ROOT_URLCONF = "Site.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['templates'],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -134,10 +134,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
-MEDIA_URL = 'media/'
-MEDIA_ROOT = Path(BASE_DIR, 'media')
-LOGOUT_REDIRECT_URL = 'index' 
+STATIC_ROOT = Path(BASE_DIR, "staticfiles")
+MEDIA_URL = "media/"
+MEDIA_ROOT = Path(BASE_DIR, "media")
+LOGOUT_REDIRECT_URL = "index"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
