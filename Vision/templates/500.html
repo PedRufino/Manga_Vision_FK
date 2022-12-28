@@ -1,0 +1,19 @@
+{% extends 'BaseError.html' %}
+{% load bootstrap5 %}
+{% load static %}
+{% block title %}Erro 500{% endblock %}
+{% block error %}
+    <div class="neon-vision">
+        <div class="txt-erro">500</div>
+        <div class="txt">Erro Interno do Servidor<span class="blink">_</span></div>
+    </div>
+    <div class="div-cont">
+        <p>✌ Eai tudo bem? ✌</p>
+        <p>• O erro 500 ocorre basicamente quando o servidor não consegue identificar o problema.</p>
+        <p>👌 Agora que você entendeu, por favor, retire-se dessa pagina usando o botão abaixo. 😊</p>
+        <p>👋 A equipe do Manga Vision agradece 😘</p>
+    </div>
+    <div class="div-cont2">
+        <button class="btn btn-primary" onclick="window.location.href='{% url 'index' %}'">Tela Inicial</button>
+    </div>
+{% endblock %}
