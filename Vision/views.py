@@ -86,7 +86,7 @@ class MangasView(TemplateView):
 
 
 class PartyView(TemplateView):
-    template_name = "504.html"
+    template_name = "party..html"
 
 
 class HelpView(TemplateView):
