@@ -1,4 +1,5 @@
 from stdimage.models import StdImageField
+from django.urls import reverse
 from django.db import models
 import os
 
@@ -140,3 +141,22 @@ class FormContato(models.Model):
     mensagem = models.TextField("Mensagem")
     data_envio = models.DateTimeField("Data do Envio", auto_now_add=True)
     resolvido = models.BooleanField("Resolvido", default=False)
+
+
+"""
+    Tabela BD - Comentarios
+"""
+
+
+# class Comments(models.Model):
+#     title = models.CharField(max_length=255, unique=True)
+#     slug = models.SlugField(max_length=255)
+#     body = models.TextField()
+#     posted = models.DateField(db_index=True, auto_now_add=True)
+#     description = models.CharField(max_length=255,null=True)
+
+#     def __str__(self):
+#         return self.title
+
+#     def get_absolute_url(self):
+#         return reverse('blog:detail',kwargs={'slug':self.slug})

@@ -29,7 +29,7 @@ class genresAdmin(admin.ModelAdmin):
 
 @admin.register(Chapter)
 class genresAdmin(admin.ModelAdmin):
-    list_display = ("capitulo", "order", "texto", "manga")
+    list_display = ("id","capitulo", "order", "texto", "manga")
 
 
 @admin.register(Pagina)

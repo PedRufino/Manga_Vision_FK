@@ -2,18 +2,35 @@ from django.views.generic import TemplateView
 from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
-from .models import mangas, ClickManga
+from .models import mangas, ClickManga, Chapter
 from datetime import date, timedelta
 
 
+# http://192.168.99.112:8000/manga/solo-leveling/#01/!page1
+
+
+
 def manga_reading(request, slug_):
+    # traz informações do manga selecionado
     manga = mangas.objects.get(slug=slug_)
+    chap_all = Chapter.objects.all()
     manga.rank += 1
     manga.save()
 
+    # Adiciona 1 ponto para o manga selecionado
     click = ClickManga(manga=manga)
     click.save()
-    return render(request, "manga_reading.html")
+    
+    # leva o conteudo do chap_all para o html
+    context = {
+        'capiulo':chap_all
+    }
+    return render(request, "manga.html", context)
+
+
+def chapter_reading(request, cap_):
+    chapter = Chapter.objects.get(id_manga=cap_)
+    
 
 
 class IndexView(TemplateView):
@@ -81,7 +98,7 @@ class IndexView(TemplateView):
         return context
 
 
-class MangasView(TemplateView):
+class ListMangasView(TemplateView):
     template_name = "mangas.html"
 
 
@@ -95,6 +112,10 @@ class HelpView(TemplateView):
 
 class HistoricView(TemplateView):
     template_name = "historic.html"
+
+
+class ComentView(TemplateView):
+    template_name = "comentarios.html"
 
 
 def contact(request):
