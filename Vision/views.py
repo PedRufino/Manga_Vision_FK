@@ -21,7 +21,7 @@ class IndexView(TemplateView):
     
     def manga_date(self):
         start_date = date.today()
-        end_date = start_date - timedelta(days=7)
+        end_date = start_date - timedelta(days=6)
         manga_data = mangas.objects.filter(modified__range=[end_date, start_date])
 
         TodayManga = []
