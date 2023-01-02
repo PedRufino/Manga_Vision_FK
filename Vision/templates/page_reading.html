@@ -1,5 +1,8 @@
 {% extends 'BaseVision.html' %}
 {% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/disqus.css' %}">
+{% endblock %}
 {% block titulo %}{{ manga.title }} - Capítulo {{ chapter.order }} por Manga Vision{% endblock %}
 {% block body %}
 
