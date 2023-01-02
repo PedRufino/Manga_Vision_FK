@@ -10,8 +10,7 @@
             </picture>
         {% endfor %}
     </div>
-
-    <script>
+    {% comment %} <script>
         window.addEventListener('scroll', function () {
             // Obtenha todas as imagens da página
             var images = document.querySelectorAll('[reader-page]');
@@ -25,7 +24,7 @@
                 }
             }
         });
-    </script>
+    </script> {% endcomment %}
     {% with request.build_absolute_uri as disqus_url %}
         <div id="disqus_thread"></div>
         <script>
