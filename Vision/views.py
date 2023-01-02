@@ -2,8 +2,9 @@ from django.views.generic import TemplateView
 from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
-from .models import mangas, ClickManga, Chapter
+from .models import mangas, ClickManga, Chapter, Pagina
 from datetime import date, timedelta
+from django.http import HttpResponse
 
 
 # http://192.168.99.112:8000/manga/solo-leveling/#01/!page1
@@ -23,15 +24,22 @@ def manga_reading(request, slug_):
     
     # leva o conteudo do chap_all para o html
     context = {
-        'capiulo':chap_all
+        'capiulo':chap_all,
+        'manga': manga,
     }
-    return render(request, "manga.html", context)
+    return render(request, "manga_info.html", context)
 
 
-def chapter_reading(request, cap_):
-    chapter = Chapter.objects.get(id_manga=cap_)
-    
-
+def chapter_reading(request, slug_, cap_):
+    manga = mangas.objects.get(slug=slug_)
+    chapter = Chapter.objects.get(order=cap_)
+    page = Pagina.objects.all().filter(capitulo=chapter)
+    context = {
+        'manga':manga,
+        'chapter': chapter,
+        'page': page,
+    }
+    return render(request, "page_reading.html", context)
 
 class IndexView(TemplateView):
     template_name = "index.html"

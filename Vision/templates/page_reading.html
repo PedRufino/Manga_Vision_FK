@@ -1,0 +1,47 @@
+{% extends 'BaseVision.html' %}
+{% load static %}
+{% block titulo %}{{ manga.title }} - Capítulo {{ chapter.order }} por Manga Vision{% endblock %}
+{% block body %}
+
+    <div class="manga-page" style="padding-top: 20px;">
+        {% for pg in page %}
+            <picture reader-page="{{ pg.order }}">
+                <img class="manga-image" title="{{ manga.title }} - Cápitulo {{ chapter.order}} Página - {{pg.order}}" alt="{{ manga.title }} - Cápitulo {{ chapter.order}} Página - {{pg.order}}" src="{{ pg.imagem.url }}">
+            </picture>
+        {% endfor %}
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            // Obtenha todas as imagens da página
+            var images = document.querySelectorAll('[reader-page]');
+        
+            // Percorra todas as imagens para determinar qual delas está sendo exibida
+            for (var i = 0; i < images.length; i++) {
+                // Verifique se a imagem atual está sendo exibida
+                if (images[i].offsetTop < window.scrollY + window.innerHeight && images[i].offsetTop + images[i].offsetHeight > window.scrollY) {
+                    // Atualize a hash da URL com o valor do atributo reader-page da imagem atual
+                    window.location.hash = '/page-' + images[i].getAttribute('reader-page');
+                }
+            }
+        });
+    </script>
+    {% with request.build_absolute_uri as disqus_url %}
+        <div id="disqus_thread"></div>
+        <script>
+
+            var disqus_config = function () {
+            this.page.url = "{{ disqus_url }}";  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = "{{ disqus_url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://manga-vision.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    {% endwith %}
+{% endblock %}

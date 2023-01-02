@@ -1,14 +1,5 @@
 from django.urls import path
-from .views import (
-    IndexView,
-    ListMangasView,
-    PartyView,
-    HelpView,
-    HistoricView,
-    ComentView,
-    manga_reading,
-    contact,
-)
+from .views import *
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
@@ -18,6 +9,6 @@ urlpatterns = [
     path("me-ajude/", HelpView.as_view(), name="help.html"),
     path("comentario/", ComentView.as_view(), name="comentario.html"),
     path("contatos-e-outros/", contact, name="contato.html"),
-    path("manga/<str:slug_>", manga_reading, name="manga"),
-    path("manga/<str:slug_>/#<int:cap_>", manga_reading, name="manga_chapter"),
+    path("manga/<str:slug_>", manga_reading, name="manga_info"),
+    path("manga/<str:slug_>/ler/capitulo-<int:cap_>", chapter_reading, name="manga_chapter"),
 ]
