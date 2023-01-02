@@ -165,10 +165,6 @@ body {
     cursor: pointer;
 }
 
-.nopadding {
-    padding: 0;
-}
-
 @media screen and (max-width: 850px) {
     .mg_site {
         margin: 0 66px;
