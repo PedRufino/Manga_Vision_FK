@@ -4,11 +4,6 @@ from django.shortcuts import render
 from django.contrib import messages
 from .models import mangas, ClickManga, Chapter, Pagina
 from datetime import date, timedelta
-from django.http import HttpResponse
-
-
-# http://192.168.99.112:8000/manga/solo-leveling/#01/!page1
-
 
 
 def manga_reading(request, slug_):
@@ -22,10 +17,13 @@ def manga_reading(request, slug_):
     click = ClickManga(manga=manga)
     click.save()
     
+    genre = manga.genre.values_list('genero', flat=True)
+    
     # leva o conteudo do chap_all para o html
     context = {
         'capiulo':chap_all,
         'manga': manga,
+        'genre': genre
     }
     return render(request, "manga_info.html", context)
 
@@ -49,53 +47,37 @@ class IndexView(TemplateView):
         end_date = start_date - timedelta(days=6)
         manga_data = mangas.objects.filter(modified__range=[end_date, start_date])
 
-        TodayManga = []
-        count = 1
-        for mgDate in manga_data:
-            count += 1
-            genre_list = []
-            for gen in mgDate.genre.all():
-                genre_list.append(str(gen))
-            genre = ", ".join(genre_list)
-
-            mg_all = {
+        TodayManga = [
+            {
                 "id_manga": mgDate.id_manga,
                 "title": mgDate.title,
-                "genero": genre,
+                "genero": ", ".join(map(str, mgDate.genre.all())),
                 "data": mgDate.modified,
                 "sinopse": mgDate.sinopse,
                 "slug": mgDate.slug,
                 "url_img": mgDate.capa,
             }
-
-            TodayManga.append(mg_all)
+            for mgDate in manga_data
+        ]
         return TodayManga
 
     def mais_lidos(self):
-        MaisLidos = []
         img = [
             "../static/img/trofeus/taca-de-ouro.png",
             "../static/img/trofeus/taca-de-prata.png",
             "../static/img/trofeus/taca-de-bronze.png",
         ]
-        most_read = mangas.objects.all().order_by("-rank")[:3]
-        x = 0
-        for mgl in most_read:
-            genre_list = []
-            for gen in mgl.genre.all():
-                genre_list.append(str(gen))
-            genre = ", ".join(genre_list)
-
-            dict_ = {
+        MaisLidos = [
+            {
                 "title": mgl.title,
                 "slug": mgl.slug,
                 "url_img": mgl.capa,
-                "genero": genre,
+                "genero": ", ".join(map(str, mgl.genre.all())),
                 "url_trofeu": img[x],
                 "rank": mgl.rank,
             }
-            MaisLidos.append(dict_)
-            x += 1
+            for x, mgl in enumerate(mangas.objects.all().order_by("-rank")[:3])
+        ]
         return MaisLidos
 
     def get_context_data(self, **kwargs):

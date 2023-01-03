@@ -1,6 +1,22 @@
 {% extends 'BaseVision.html' %}
 {% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/manga-info.css' %}">
+{% endblock %}
 {% block titulo %}{{ manga.title }} - Manga Vision{% endblock %}
 {% block body %}
-
+    <div class="row main-info">
+        <div class="col-lg-3 rl-col">
+            <img class="img-capa-manga mx-auto" style="max-height: 100%; min-height: 100%;" src="{{ manga.capa.url }}" alt="{{ manga.title }}"></a>
+        </div>
+        <div class="col-lg">
+            <h1 class="rl-manga-title">{{ manga.title }}</h1>
+            {% for genre in genre %}
+                <span class="generos">{{ genre }}</span>
+            {% endfor %}
+            <div class="rl-manga-snps">
+                <p class="rl-manga-sinopse">{{ manga.sinopse }}</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

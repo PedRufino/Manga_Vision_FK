@@ -1,0 +1,64 @@
+/* Cantainers Info */
+.rl-col{
+    width: 310px; 
+    height: 419px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1.rl-manga-title {
+    font-family: 'Roboto Regular';
+    letter-spacing: 1px;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #fff;
+}
+
+p.rl-manga-sinopse{
+    margin-top: 5px;
+    font-size: 16px;
+    font-family: 'Groteska';
+    color: #979797;
+    line-height: 24px;
+    text-align: justify;
+}
+
+.rl-manga-snps{
+    height: 5.5rem;
+    left: 500px;
+}
+
+.img-capa-manga {
+    width: 100%;
+    height: auto;
+}
+
+.main-info {
+    margin-bottom: 10px !important;
+    margin-top: 40px !important;
+}
+
+.generos {
+    margin: 10px 3px 10px 0;
+    display: inline-block;
+    background: #b2c23d;
+    font-weight: 600;
+    font-family: 'Roboto Regular';
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 3px;
+}
+
+@media screen and (max-width: 1000px) {
+    .main-info {
+        text-align: center;
+    }
+
+    h1.rl-manga-title{
+        margin: 20px;
+    }
+
+}
+
+/* Fim Cantainers Info */
