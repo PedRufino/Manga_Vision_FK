@@ -2,12 +2,20 @@
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/manga-info.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 {% endblock %}
 {% block titulo %}{{ manga.title }} - Manga Vision{% endblock %}
 {% block body %}
     <div class="row main-info">
         <div class="col-lg-3 rl-col">
-            <img class="img-capa-manga mx-auto" style="max-height: 100%; min-height: 100%;" src="{{ manga.capa.url }}" alt="{{ manga.title }}"></a>
+            <img class="img-capa-manga mx-auto" style="max-height: 100%; min-height: 100%;" src="{{ manga.capa.url }}" alt="{{ manga.title }}">
+            <div class="stars">
+                <i class="fa-solid fa-star" value="1"></i>
+                <i class="fa-solid fa-star" value="2"></i>
+                <i class="fa-solid fa-star" value="3"></i>
+                <i class="fa-solid fa-star" value="4"></i>
+                <i class="fa-solid fa-star" value="5"></i>
+            </div>
         </div>
         <div class="col-lg">
             <h1 class="rl-manga-title">{{ manga.title }}</h1>
@@ -19,4 +27,21 @@
             </div>
         </div>
     </div>
+    <script>
+        // Select all elements with the "i" tag and store them in a NodeList called "stars"
+        const stars = document.querySelectorAll(".stars i");
+
+        // Loop through the "stars" NodeList
+        stars.forEach((star, index1) => {
+            // Add an event listener that runs a function when the "click" event is triggered
+            star.addEventListener("click", () => {
+                // Loop through the "stars" NodeList Again
+                stars.forEach((star, index2) => {
+                    // Add the "active" class to the clicked star and any stars with a lower index
+                    // and remove the "active" class from any stars with a higher index
+                    index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+                });
+            });
+        });
+    </script>
 {% endblock %}

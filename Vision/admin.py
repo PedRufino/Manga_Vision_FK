@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import mangas, genres, FormContato, Chapter, Pagina
+from .models import *
 
 
 @admin.register(mangas)
@@ -35,3 +35,8 @@ class genresAdmin(admin.ModelAdmin):
 @admin.register(Pagina)
 class genresAdmin(admin.ModelAdmin):
     list_display = ("pg_name", "order", "imagem", "capitulo")
+
+
+@admin.register(MangaRating)
+class MangaRatingAdmin(admin.ModelAdmin):
+    list_display = ("manga", "rating", "created_at")

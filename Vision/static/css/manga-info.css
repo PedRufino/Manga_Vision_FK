@@ -62,3 +62,19 @@ p.rl-manga-sinopse{
 }
 
 /* Fim Cantainers Info */
+
+.stars{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.stars i {
+    color: #e6e6e6;
+    font-size: 35px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.stars i.active {
+    color: #FFE500;
+}

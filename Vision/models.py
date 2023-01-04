@@ -144,19 +144,14 @@ class FormContato(models.Model):
 
 
 """
-    Tabela BD - Comentarios
+    Tabela BD - Avaliações
 """
 
 
-# class Comments(models.Model):
-#     title = models.CharField(max_length=255, unique=True)
-#     slug = models.SlugField(max_length=255)
-#     body = models.TextField()
-#     posted = models.DateField(db_index=True, auto_now_add=True)
-#     description = models.CharField(max_length=255,null=True)
-
-#     def __str__(self):
-#         return self.title
-
-#     def get_absolute_url(self):
-#         return reverse('blog:detail',kwargs={'slug':self.slug})
+class MangaRating(models.Model):
+    manga = models.ForeignKey(mangas, on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['rating']
