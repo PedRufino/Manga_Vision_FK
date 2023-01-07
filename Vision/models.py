@@ -49,11 +49,17 @@ class mangas(Base):
     title = models.CharField("Nome do Manga", max_length=150, blank=True)
     author = models.CharField("Autor do Manga", max_length=150, blank=True)
     release_Year = models.IntegerField("Data de Lançamento", blank=True)
+    CHOICE_TYPE = (('Manga','Manga'), ('Webtoon','Webtoon'), ('Manhwa','Manhwa'), ('Manhua','Manhua'), ('Novel','Novel'), ('Webcomic','Webcomic'))
+    type_manga = models.CharField("Tipo", max_length=8, choices=CHOICE_TYPE, blank=True)
     responsible_Group = models.CharField("Nome do Grupo", max_length=150, blank=True)
     sinopse = models.TextField("Sinopse", blank=True)
     capa = StdImageField("Capas dos Mangas", upload_to=manga_directory_path)
     slug = models.SlugField("Slug", max_length=150, blank=True, editable=True, unique=True)
     rank = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        verbose_name = 'Manga'
+        verbose_name_plural = 'Mangas'
 
     def __str__(self):
         return self.title
@@ -108,6 +114,10 @@ class Pagina(models.Model):
 class genres(models.Model):
     id_gender = models.AutoField(auto_created=True, primary_key=True, serialize=False)
     genero = models.CharField("Generos", max_length=150)
+    
+    class Meta:
+        verbose_name = 'Genero'
+        verbose_name_plural = 'Generos'
 
     def __str__(self):
         return self.genero

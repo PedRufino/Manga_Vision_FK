@@ -9,7 +9,7 @@ from datetime import date, timedelta
 def manga_reading(request, slug_):
     # traz informações do manga selecionado
     manga = mangas.objects.get(slug=slug_)
-    chap_all = Chapter.objects.all()
+    chap_all = Chapter.objects.filter(manga=manga)
     manga.rank += 1
     manga.save()
 
@@ -19,19 +19,30 @@ def manga_reading(request, slug_):
     
     genre = manga.genre.values_list('genero', flat=True)
     
+    #Status
+    if manga.in_launch == True:
+        status = "Em Lançamento"
+    elif manga.Abandoned == True:
+        status = "Abandonado"
+    elif manga.finished == True:
+        status = "Finalizado"
+    
     # leva o conteudo do chap_all para o html
     context = {
-        'capiulo':chap_all,
+        'capitulo':chap_all,
+        'first':chap_all.first(),
+        'last':chap_all.last(),
+        'status': status,
         'manga': manga,
-        'genre': genre
+        'genre': genre,
     }
     return render(request, "manga_info.html", context)
 
 
 def chapter_reading(request, slug_, cap_):
     manga = mangas.objects.get(slug=slug_)
-    chapter = Chapter.objects.get(order=cap_)
-    page = Pagina.objects.all().filter(capitulo=chapter)
+    chapter = Chapter.objects.get(order=cap_, manga=manga)
+    page = Pagina.objects.filter(capitulo=chapter)
     context = {
         'manga':manga,
         'chapter': chapter,

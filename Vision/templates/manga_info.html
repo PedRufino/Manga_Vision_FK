@@ -17,14 +17,42 @@
                 <i class="fa-solid fa-star" value="5"></i>
             </div>
         </div>
-        <div class="col-lg">
+        <div class="col-lg rl-col2">
             <h1 class="rl-manga-title">{{ manga.title }}</h1>
+            <p class="rl-manga-subtitle">Autor: {{ manga.author }}</p>
             {% for genre in genre %}
                 <span class="generos">{{ genre }}</span>
             {% endfor %}
+            <div class="col-lg bg-light rl-col3">
+                <p>Status: {{ status }}</p>
+                <p>Ano de Lançamento: {{ manga.release_Year }}</p>
+                <p>Tipo: {{ tipo }}</p>
+            </div>
             <div class="rl-manga-snps">
                 <p class="rl-manga-sinopse">{{ manga.sinopse }}</p>
             </div>
+        </div>
+        <div class="title-cap">
+            <h3 class="capitulo">Capítulos de {{ manga.title }}</h3>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <a class="col manga-header" style="margin-right: 10px;" href="{{ manga.slug }}/ler/capitulo-{{ first.order }}" title="Ler Capítulo {{ first.order }} de {{ manga.title }} Online!">
+                <span class="title-span">Primeiro Capítulo</span>
+                <span>Capítulo {{ first.order }}</span>
+            </a>
+            <a class="col manga-header" href="{{ manga.slug }}/ler/capitulo-{{ last.order }}" title="Ler Capítulo {{ last.order }} de {{ manga.title }} Online!">
+                <span class="title-span">Novo Capítulo</span>
+                <span>Capítulo {{ last.order }}</span>
+            </a>
+        </div>
+        <div class="col-cap">
+            {% for cap in capitulo %}
+                <div class="manga-index-header2">
+                    <a class="anc" href="{{ manga.slug }}/ler/capitulo-{{ cap.order }}" title="Ler Capítulo {{cap.order }} de {{ manga.title }} Online!">
+                        Capítulo {{cap.order}}
+                    </a>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <script>

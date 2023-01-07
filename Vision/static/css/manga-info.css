@@ -6,6 +6,16 @@
     margin-right: auto;
 }
 
+.rl-col2{
+    height: 500px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.rl-col3{
+    height: 100px;
+}
+
 h1.rl-manga-title {
     font-family: 'Roboto Regular';
     letter-spacing: 1px;
@@ -13,6 +23,14 @@ h1.rl-manga-title {
     font-weight: 600;
     line-height: 28px;
     color: #fff;
+}
+
+p.rl-manga-subtitle{
+    margin: 0;
+    font-family: 'Roboto Regular';
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: rgb(150, 150, 150);
 }
 
 p.rl-manga-sinopse{
@@ -25,8 +43,13 @@ p.rl-manga-sinopse{
 }
 
 .rl-manga-snps{
-    height: 5.5rem;
+    height: 15rem;
     left: 500px;
+    overflow: auto;
+}
+
+.rl-manga-snps::-webkit-scrollbar {
+    width: 0px;
 }
 
 .img-capa-manga {
@@ -42,10 +65,10 @@ p.rl-manga-sinopse{
 .generos {
     margin: 10px 3px 10px 0;
     display: inline-block;
-    background: #b2c23d;
-    font-weight: 600;
+    background: #167b00;
+    font-weight: 500;
     font-family: 'Roboto Regular';
-    color: #000;
+    color: #fff;
     padding: 4px 12px;
     border-radius: 3px;
 }
@@ -56,9 +79,23 @@ p.rl-manga-sinopse{
     }
 
     h1.rl-manga-title{
-        margin: 20px;
+        margin: 80px 20px 20px 20px;
     }
 
+    .title-cap{
+        margin-top: 10px;
+    }
+
+}
+
+.col-cap{
+    margin-top: 10px;
+    height: 20rem;
+    overflow: auto;
+}
+
+.col-cap::-webkit-scrollbar {
+    width: 3px;
 }
 
 /* Fim Cantainers Info */
@@ -78,3 +115,66 @@ p.rl-manga-sinopse{
 .stars i.active {
     color: #FFE500;
 }
+
+.manga-index-header2 {
+    background: #3f3f3f;
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: 400;
+    color: silver;
+    margin-bottom: 3px;
+    font-family: 'Groteska';
+}
+
+.manga-header {
+    color: #fff;
+    text-align: center;
+    background: #167b00;
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    font-family: 'Groteska';
+}
+
+.manga-header span{
+    display: block;
+}
+
+.title-span{
+    font-size: 17px;
+    font-weight: 100 !important;
+}
+
+.manga-header:hover{
+    background: #0e4601;
+    color: #fff;
+}
+
+.capitulo{
+    background-color: #000000;
+    padding: 16px;
+    font-size: 22px;
+    margin: 0 auto;
+    font-family: "Roboto Thin", sans-serif;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.cont-cap{
+    margin-top: 6%;
+}
+
+.anc{
+    color: #fff;
+}
+.anc:hover{
+    color: #FFE500;
+}
+
