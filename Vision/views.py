@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
-from .models import mangas, ClickManga, Chapter, Pagina
+from .models import mangas, ClickManga, Chapter, Pagina, Rank
 from datetime import date, timedelta
 
 
@@ -10,12 +10,14 @@ def manga_reading(request, slug_):
     # traz informações do manga selecionado
     manga = mangas.objects.get(slug=slug_)
     chap_all = Chapter.objects.filter(manga=manga)
-    manga.rank += 1
-    manga.save()
 
     # Adiciona 1 ponto para o manga selecionado
-    click = ClickManga(manga=manga)
-    click.save()
+    try:
+        rank_ = Rank.objects.get(manga=manga)
+        rank_.rank += 1
+        rank_.save()
+    except Exception as erro:
+        Rank.objects.create(manga=manga, rank=1)
     
     genre = manga.genre.values_list('genero', flat=True)
     
@@ -85,7 +87,7 @@ class IndexView(TemplateView):
                 "url_img": mgl.capa,
                 "genero": ", ".join(map(str, mgl.genre.all())),
                 "url_trofeu": img[x],
-                "rank": mgl.rank,
+                # "rank": mgl.rank,
             }
             for x, mgl in enumerate(mangas.objects.all().order_by("-rank")[:3])
         ]

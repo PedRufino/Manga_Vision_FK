@@ -55,7 +55,6 @@ class mangas(Base):
     sinopse = models.TextField("Sinopse", blank=True)
     capa = StdImageField("Capas dos Mangas", upload_to=manga_directory_path)
     slug = models.SlugField("Slug", max_length=150, blank=True, editable=True, unique=True)
-    rank = models.PositiveIntegerField(default=0)
     
     class Meta:
         verbose_name = 'Manga'
@@ -72,6 +71,14 @@ class mangas(Base):
         if not os.path.exists(os.path.join("media", "mangas", self.slug)):
             os.makedirs(os.path.join("media", "mangas", self.slug))
         super(mangas, self).save(*args, **kwargs)
+
+class Rank(models.Model):
+    manga = models.ForeignKey(mangas, on_delete=models.CASCADE)
+    rank = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        verbose_name = "Rank"
+        verbose_name_plural = "Ranks"
 
 
 class Chapter(models.Model):

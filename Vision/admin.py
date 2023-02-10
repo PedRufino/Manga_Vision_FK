@@ -10,7 +10,6 @@ class mangasAdmin(admin.ModelAdmin):
         "author",
         "modified",
         "slug",
-        "rank",
         "in_launch",
         "finished",
         "Abandoned",
@@ -40,3 +39,7 @@ class genresAdmin(admin.ModelAdmin):
 @admin.register(MangaRating)
 class MangaRatingAdmin(admin.ModelAdmin):
     list_display = ("manga", "rating", "created_at")
+
+@admin.register(Rank)
+class RankAdmin(admin.ModelAdmin):
+    list_display = ("manga", "rank")
