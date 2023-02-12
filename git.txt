@@ -1,0 +1,19 @@
+git pull    <----- sempre roda esse em primeiro para trazer as atualizações se tiver
+
+git status    <----- Para saber qual pasta ou arquivo que vc modificou
+
+-------------------------------------
+RESTAURAR MODIFICAÇÕES
+-------------------------------------
+
+git restore .
+
+só funciona se vc não tiver feito 
+os comandos baixo para adicionar as alterações
+
+--------------------------------------
+ADICIONAR ALTERAÇÕES
+--------------------------------------
+git add .
+git commit -m "texto aqui"    <----- Escreve sempre dentro da aspas duplas o que vc fez
+git push -u origin master
