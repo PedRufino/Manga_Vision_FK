@@ -112,14 +112,11 @@ class PartyView(TemplateView):
 class HelpView(TemplateView):
     template_name = "help.html"
 
+class StoreView(TemplateView):
+    template_name = "store.html"
 
 class HistoricView(TemplateView):
     template_name = "historic.html"
-
-
-class ComentView(TemplateView):
-    template_name = "comentarios.html"
-
 
 def contact(request):
     if str(request.method) == "POST":

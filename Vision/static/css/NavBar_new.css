@@ -106,4 +106,21 @@
     background-size: 100%;
 }
 
+.Store {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    vertical-align: middle;
+    background-image: url(../img/cesta.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+li{
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 500px) {}
