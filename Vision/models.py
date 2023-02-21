@@ -172,3 +172,17 @@ class MangaRating(models.Model):
     
     class Meta:
         ordering = ['rating']
+
+
+"""
+    Tabela BD - Avaliações
+"""
+
+class store(models.Model):
+    titulo = models.CharField("Título", max_length=100)
+    valor = models.DecimalField("Valor", max_digits=8, decimal_places=2, null=True, blank=True)
+    link_img = models.CharField("Link da Imagem", max_length=255)
+    link_vitrine = models.CharField("Link do Produto", max_length=255)
+    
+    def __str__(self):
+        return self.titulo

@@ -43,3 +43,7 @@ class MangaRatingAdmin(admin.ModelAdmin):
 @admin.register(Rank)
 class RankAdmin(admin.ModelAdmin):
     list_display = ("manga", "rank")
+
+@admin.register(store)
+class RankAdmin(admin.ModelAdmin):
+    list_display = ("titulo", "valor", "link_img", "link_vitrine")
