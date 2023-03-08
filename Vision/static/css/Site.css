@@ -331,3 +331,56 @@ a.rl-link{
     border-color: rgba(255, 255, 255, 0.5);
 }
 /* Fim Formulario */
+
+
+/* Button Top */
+#btnVoltarAoTopo {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: rgb(168, 238, 89);
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#btnVoltarAoTopo:hover {
+    background-color: rgb(126, 179, 66);
+}
+
+#btnVoltarAoTopoIndex {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: rgb(168, 238, 89);
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#btnVoltarAoTopoIndex:hover {
+    background-color: rgb(126, 179, 66);
+}
+
+.arrow {
+    width: 30px;
+    height: 30px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+/* Fim Button Top */

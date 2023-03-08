@@ -13,6 +13,7 @@
             </picture>
         {% endfor %}
     </div>
+    <button onclick="voltarAoTopo()" id="btnVoltarAoTopo" title="Voltar ao topo"><img class="arrow" src="{% static 'img/seta.png' %}" alt=""></button>
     {% comment %} <script>
         window.addEventListener('scroll', function () {
             // Obtenha todas as imagens da página
@@ -46,4 +47,5 @@
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     {% endwith %}
+    <script src="{% static 'js/button_up.vision.js' %}"></script>
 {% endblock %}
