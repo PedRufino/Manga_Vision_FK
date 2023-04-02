@@ -10,5 +10,9 @@ urlpatterns = [
     path("store/", StoreView.as_view(), name="store.html"),
     path("contatos-e-outros/", contact, name="contato.html"),
     path("manga/<str:slug_>", manga_reading, name="manga_info"),
-    path("manga/<str:slug_>/ler/capitulo-<int:cap_>", chapter_reading, name="manga_chapter"),
+    path(
+        "manga/<str:slug_>/ler/capitulo-<int:cap_>",
+        chapter_reading,
+        name="manga_chapter",
+    ),
 ]

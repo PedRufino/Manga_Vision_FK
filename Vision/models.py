@@ -40,7 +40,9 @@ def chapter_directory_path(instance):
 
 def page_directory_path(instance, filename):
     # define o caminho da pasta do capítulo como "books/<nome do livro>/chapters"
-    return "mangas/{0}/capitulo-{1}/{2}".format(instance.capitulo.manga.slug, instance.capitulo.order, filename)
+    return "mangas/{0}/capitulo-{1}/{2}".format(
+        instance.capitulo.manga.slug, instance.capitulo.order, filename
+    )
 
 
 class mangas(Base):
@@ -49,16 +51,25 @@ class mangas(Base):
     title = models.CharField("Nome do Manga", max_length=150, blank=True)
     author = models.CharField("Autor do Manga", max_length=150, blank=True)
     release_Year = models.IntegerField("Data de Lançamento", blank=True)
-    CHOICE_TYPE = (('Manga','Manga'), ('Webtoon','Webtoon'), ('Manhwa','Manhwa'), ('Manhua','Manhua'), ('Novel','Novel'), ('Webcomic','Webcomic'))
+    CHOICE_TYPE = (
+        ("Manga", "Manga"),
+        ("Webtoon", "Webtoon"),
+        ("Manhwa", "Manhwa"),
+        ("Manhua", "Manhua"),
+        ("Novel", "Novel"),
+        ("Webcomic", "Webcomic"),
+    )
     type_manga = models.CharField("Tipo", max_length=8, choices=CHOICE_TYPE, blank=True)
     responsible_Group = models.CharField("Nome do Grupo", max_length=150, blank=True)
     sinopse = models.TextField("Sinopse", blank=True)
     capa = StdImageField("Capas dos Mangas", upload_to=manga_directory_path)
-    slug = models.SlugField("Slug", max_length=150, blank=True, editable=True, unique=True)
-    
+    slug = models.SlugField(
+        "Slug", max_length=150, blank=True, editable=True, unique=True
+    )
+
     class Meta:
-        verbose_name = 'Manga'
-        verbose_name_plural = 'Mangas'
+        verbose_name = "Manga"
+        verbose_name_plural = "Mangas"
 
     def __str__(self):
         return self.title
@@ -72,10 +83,11 @@ class mangas(Base):
             os.makedirs(os.path.join("media", "mangas", self.slug))
         super(mangas, self).save(*args, **kwargs)
 
+
 class Rank(models.Model):
     manga = models.ForeignKey(mangas, on_delete=models.CASCADE)
     rank = models.PositiveIntegerField(default=0)
-    
+
     class Meta:
         verbose_name = "Rank"
         verbose_name_plural = "Ranks"
@@ -92,8 +104,14 @@ class Chapter(models.Model):
 
     def save(self, *args, **kwargs):
         # cria a pasta do capítulo caso ela não exista
-        if not os.path.exists(os.path.join("media", "mangas", self.manga.slug, f"capitulo-{self.order}")):
-            os.makedirs(os.path.join("media", "mangas", self.manga.slug, f"capitulo-{self.order}"))
+        if not os.path.exists(
+            os.path.join("media", "mangas", self.manga.slug, f"capitulo-{self.order}")
+        ):
+            os.makedirs(
+                os.path.join(
+                    "media", "mangas", self.manga.slug, f"capitulo-{self.order}"
+                )
+            )
         super(Chapter, self).save(*args, **kwargs)
 
     class Meta:
@@ -109,8 +127,22 @@ class Pagina(models.Model):
 
     def save(self, *args, **kwargs):
         # cria a pasta do capítulo caso ela não exista
-        if not os.path.exists(os.path.join("media","mangas",self.capitulo.manga.slug,f"capitulo-{self.capitulo.order}",)):
-            os.makedirs(os.path.join("media","mangas",self.capitulo.manga.slug,f"capitulo-{self.capitulo.order}",))
+        if not os.path.exists(
+            os.path.join(
+                "media",
+                "mangas",
+                self.capitulo.manga.slug,
+                f"capitulo-{self.capitulo.order}",
+            )
+        ):
+            os.makedirs(
+                os.path.join(
+                    "media",
+                    "mangas",
+                    self.capitulo.manga.slug,
+                    f"capitulo-{self.capitulo.order}",
+                )
+            )
         super(Pagina, self).save(*args, **kwargs)
 
     class Meta:
@@ -121,10 +153,10 @@ class Pagina(models.Model):
 class genres(models.Model):
     id_gender = models.AutoField(auto_created=True, primary_key=True, serialize=False)
     genero = models.CharField("Generos", max_length=150)
-    
+
     class Meta:
-        verbose_name = 'Genero'
-        verbose_name_plural = 'Generos'
+        verbose_name = "Genero"
+        verbose_name_plural = "Generos"
 
     def __str__(self):
         return self.genero
@@ -169,20 +201,23 @@ class MangaRating(models.Model):
     manga = models.ForeignKey(mangas, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
-        ordering = ['rating']
+        ordering = ["rating"]
 
 
 """
     Tabela BD - Avaliações
 """
 
+
 class store(models.Model):
     titulo = models.CharField("Título", max_length=100)
-    valor = models.DecimalField("Valor", max_digits=8, decimal_places=2, null=True, blank=True)
+    valor = models.DecimalField(
+        "Valor", max_digits=8, decimal_places=2, null=True, blank=True
+    )
     link_img = models.CharField("Link da Imagem", max_length=255)
     link_vitrine = models.CharField("Link do Produto", max_length=255)
-    
+
     def __str__(self):
         return self.titulo

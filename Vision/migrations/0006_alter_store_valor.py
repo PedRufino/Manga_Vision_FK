@@ -4,15 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('Vision', '0005_alter_store_valor'),
+        ("Vision", "0005_alter_store_valor"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='store',
-            name='valor',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=8, null=True, verbose_name='Valor'),
+            model_name="store",
+            name="valor",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                max_digits=8,
+                null=True,
+                verbose_name="Valor",
+            ),
         ),
     ]

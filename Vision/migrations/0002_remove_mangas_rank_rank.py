@@ -5,22 +5,34 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('Vision', '0001_initial'),
+        ("Vision", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='mangas',
-            name='rank',
+            model_name="mangas",
+            name="rank",
         ),
         migrations.CreateModel(
-            name='Rank',
+            name="Rank",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rank', models.PositiveIntegerField(default=0)),
-                ('id_manga', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Vision.mangas')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("rank", models.PositiveIntegerField(default=0)),
+                (
+                    "id_manga",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="Vision.mangas"
+                    ),
+                ),
             ],
         ),
     ]
