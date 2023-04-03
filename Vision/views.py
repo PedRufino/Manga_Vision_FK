@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
@@ -18,25 +18,25 @@ def manga_reading(request, slug_):
         rank_.save()
     except Exception as erro:
         Rank.objects.create(manga=manga, rank=1)
-    
-    genre = manga.genre.values_list('genero', flat=True)
-    
-    #Status
+
+    genre = manga.genre.values_list("genero", flat=True)
+
+    # Status
     if manga.in_launch == True:
         status = "Em Lançamento"
     elif manga.Abandoned == True:
         status = "Abandonado"
     elif manga.finished == True:
         status = "Finalizado"
-    
+
     # leva o conteudo do chap_all para o html
     context = {
-        'capitulo':chap_all,
-        'first':chap_all.first(),
-        'last':chap_all.last(),
-        'status': status,
-        'manga': manga,
-        'genre': genre,
+        "capitulo": chap_all,
+        "first": chap_all.first(),
+        "last": chap_all.last(),
+        "status": status,
+        "manga": manga,
+        "genre": genre,
     }
     return render(request, "manga_info.html", context)
 
@@ -46,15 +46,16 @@ def chapter_reading(request, slug_, cap_):
     chapter = Chapter.objects.get(order=cap_, manga=manga)
     page = Pagina.objects.filter(capitulo=chapter)
     context = {
-        'manga':manga,
-        'chapter': chapter,
-        'page': page,
+        "manga": manga,
+        "chapter": chapter,
+        "page": page,
     }
     return render(request, "page_reading.html", context)
 
+
 class IndexView(TemplateView):
     template_name = "index.html"
-    
+
     def manga_date(self):
         start_date = date.today()
         end_date = start_date - timedelta(days=6)
@@ -95,34 +96,39 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['all_mangas'] = mangas.objects.all()
-        context['lancamentos'] = self.manga_date()
-        context['mais_lidos'] = self.mais_lidos()
+        context["all_mangas"] = mangas.objects.all()
+        context["lancamentos"] = self.manga_date()
+        context["mais_lidos"] = self.mais_lidos()
         return context
 
 
-class ListMangasView(TemplateView):
+class ListMangasView(ListView):
     template_name = "mangas.html"
+    paginate_by = 30
+    model = mangas
+    ordering = "id_manga"
 
 
 class PartyView(TemplateView):
-    template_name = "party..html"
+    template_name = "party.html"
 
 
 class HelpView(TemplateView):
     template_name = "help.html"
 
+
 class StoreView(TemplateView):
     template_name = "store.html"
 
+
 class HistoricView(TemplateView):
     template_name = "historic.html"
+
 
 def contact(request):
     if str(request.method) == "POST":
         form = ContatoModelForm(request.POST, request.FILES)
         if form.is_valid():
-
             form.save()
 
             messages.success(request, "E-mail enviando com sucesso.")

@@ -28,7 +28,7 @@ class genresAdmin(admin.ModelAdmin):
 
 @admin.register(Chapter)
 class genresAdmin(admin.ModelAdmin):
-    list_display = ("id","capitulo", "order", "texto", "manga")
+    list_display = ("id", "capitulo", "order", "texto", "manga")
 
 
 @admin.register(Pagina)
@@ -40,9 +40,11 @@ class genresAdmin(admin.ModelAdmin):
 class MangaRatingAdmin(admin.ModelAdmin):
     list_display = ("manga", "rating", "created_at")
 
+
 @admin.register(Rank)
 class RankAdmin(admin.ModelAdmin):
     list_display = ("manga", "rank")
+
 
 @admin.register(store)
 class RankAdmin(admin.ModelAdmin):

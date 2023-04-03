@@ -2,5 +2,88 @@
 {% load static %}
 {% block titulo %}Lista de Títulos{% endblock %}
 {% block body %}
-
+<div class="row">
+    <div class="col-md-9 black-vision">
+        <h2 class="font2">Lista de Mangas</h2>
+        <div class="row">
+            {% for p in page_obj %}
+                <div class="col card-manga">
+                    <div class="card">
+                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="acard" href="#" title="Leia {{ p.title }} Online!" data-item-id="{{ p.id_manga }}">
+                            <img class="card-img-top unic" src="{{ p.capa.url }}" alt="{{ p.title }}">
+                        </a>
+                        <div class="card-body">
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" title="Leia {{ p.title }} Online!" data-item-id="{{ p.id_manga }}">
+                                <h5 class="card-title1">{{ p.title }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="color: black;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal-description"></p>
+                        <!-- Aqui você pode adicionar mais informações sobre o mangá -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="manga-views black-vision">
+            {% comment %} <h2 class="font2" style="margin-top: 20px; margin-bottom: 20px;">Mais Lidos</h2>
+            {% for ML in mais_lidos %}
+            <div class="manga-item">
+                <div><img class="rl-trofeu" src="{{ ML.url_trofeu }}"></div>
+                <div class="mv_img2">
+                    <a href="manga/{{ ML.slug }}" title="Ler {{ ML.title }} Online!"><img src="{{ ML.url_img.url }}"
+                            alt="{{ ML.title }}"></a>
+                </div>
+                <div class="rl-content">
+                    <span class="rl-title"><a class="title" title="Ler {{ ML.title }} Online!"
+                            href="manga/{{ ML.slug }}">{{ ML.title }}</a></span>
+                    <span class="rl-genre">{{ ML.genero }}</span>
+                </div>
+            </div>
+            {% endfor %} {% endcomment %}
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    var mangas = {};
+    $.ajax({
+        url: "/api/v1/",
+        dataType: "json",
+        success: function(data) {
+            for (var i = 0; i < data.length; i++) {
+                mangas[data[i].id_manga] = data[i];
+            }
+        },
+        error: function() {
+            alert("Ocorreu um erro ao buscar as informações dos mangás.");
+        }
+    });
+    
+    $(".acard").click(function(event) {
+        event.preventDefault();
+        var id_manga = $(this).data("item-id");
+        var manga = mangas[id_manga];
+        $("#exampleModalLabel").text(manga.title);
+        $("#modal-description").text(manga.sinopse);
+        // ...
+    });
+});
+</script>
 {% endblock %}
