@@ -21,32 +21,31 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="MangaBaseName" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="color: black;">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                        <h1 class="modal-title fs-5" id="MangaBaseName"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <p id="modal-description"></p>
-                        <!-- Aqui você pode adicionar mais informações sobre o mangá -->
+                    <div class="modal-snps m-3">
+                        <span class="modal-sinopse text-justify" id="manga-sinopse"></span>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="modal-footer mx-auto">
+                        <a id="manga-url-capitulo" href="" title=""><button type="button" class="btn btn-success">Lista de Capítulos</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="manga-views black-vision">
-            {% comment %} <h2 class="font2" style="margin-top: 20px; margin-bottom: 20px;">Mais Lidos</h2>
+    <div class="col-xl-3">
+        <div class="manga-views black-vision" aria-labelledby="MangaBaseName">
+            <h2 class="font2" style="margin-top: 20px; margin-bottom: 20px;">Mais Lidos</h2>
             {% for ML in mais_lidos %}
-            <div class="manga-item">
+            <div class="manga-item" data-item-id="{{ ML.id_manga }}">
                 <div><img class="rl-trofeu" src="{{ ML.url_trofeu }}"></div>
                 <div class="mv_img2">
-                    <a href="manga/{{ ML.slug }}" title="Ler {{ ML.title }} Online!"><img src="{{ ML.url_img.url }}"
+                    <a href="" title=""><img src="{{ ML.url_img.url }}"
                             alt="{{ ML.title }}"></a>
                 </div>
                 <div class="rl-content">
@@ -55,7 +54,7 @@
                     <span class="rl-genre">{{ ML.genero }}</span>
                 </div>
             </div>
-            {% endfor %} {% endcomment %}
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -75,14 +74,18 @@ $(document).ready(function() {
             alert("Ocorreu um erro ao buscar as informações dos mangás.");
         }
     });
-    
     $(".acard").click(function(event) {
         event.preventDefault();
         var id_manga = $(this).data("item-id");
         var manga = mangas[id_manga];
-        $("#exampleModalLabel").text(manga.title);
-        $("#modal-description").text(manga.sinopse);
-        // ...
+        var url = window.location.origin;
+        $("#MangaBaseName").text(manga.title);
+        $("#manga-sinopse").text(manga.sinopse);
+        $("#manga-capa-img").attr("src", manga.capa);
+        $("#manga-url-capitulo").attr({
+            "href": url+'/manga/'+manga.slug,
+            "title": 'Ler '+manga.title+' Online!'
+        });
     });
 });
 </script>

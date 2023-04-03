@@ -107,6 +107,30 @@ class ListMangasView(ListView):
     paginate_by = 30
     model = mangas
     ordering = "id_manga"
+    
+    def mais_lidos(self):
+        img = [
+            "../static/img/trofeus/taca-de-ouro.png",
+            "../static/img/trofeus/taca-de-prata.png",
+            "../static/img/trofeus/taca-de-bronze.png",
+        ]
+        MaisLidos = [
+            {
+                "title": mgl.title,
+                "slug": mgl.slug,
+                "url_img": mgl.capa,
+                "genero": ", ".join(map(str, mgl.genre.all())),
+                "url_trofeu": img[x] if x < len(img) else '',
+                # "rank": mgl.rank,
+            }
+            for x, mgl in enumerate(mangas.objects.all().order_by("-rank")[:10])
+        ]
+        return MaisLidos
+
+    def get_context_data(self, **kwargs):
+        context = super(ListView, self).get_context_data(**kwargs)
+        context["mais_lidos"] = self.mais_lidos()
+        return context
 
 
 class PartyView(TemplateView):
