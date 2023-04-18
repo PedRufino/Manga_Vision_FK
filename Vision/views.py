@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from .models import mangas, ClickManga, Chapter, Pagina, Rank
 from datetime import date, timedelta
+from django.db.models import F
 
 
 def manga_reading(request, slug_):
@@ -90,7 +91,8 @@ class IndexView(TemplateView):
                 "url_trofeu": img[x],
                 # "rank": mgl.rank,
             }
-            for x, mgl in enumerate(mangas.objects.all().order_by("-rank")[:3])
+            for x, mgl in enumerate(mangas.objects.annotate(ranking=F('rank__rank')).order_by('-ranking')[:3])
+            
         ]
         return MaisLidos
 
@@ -123,7 +125,7 @@ class ListMangasView(ListView):
                 "url_trofeu": img[x] if x < len(img) else '',
                 # "rank": mgl.rank,
             }
-            for x, mgl in enumerate(mangas.objects.all().order_by("-rank")[:10])
+            for x, mgl in enumerate(mangas.objects.annotate(ranking=F('rank__rank')).order_by('-ranking')[:10])
         ]
         return MaisLidos
 

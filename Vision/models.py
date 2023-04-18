@@ -157,6 +157,7 @@ class genres(models.Model):
     class Meta:
         verbose_name = "Genero"
         verbose_name_plural = "Generos"
+        ordering = ["genero"]
 
     def __str__(self):
         return self.genero
