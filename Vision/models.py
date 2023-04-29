@@ -51,15 +51,6 @@ class mangas(Base):
     title = models.CharField("Nome do Manga", max_length=150, blank=True)
     author = models.CharField("Autor do Manga", max_length=150, blank=True)
     release_Year = models.IntegerField("Data de Lançamento", blank=True)
-    CHOICE_TYPE = (
-        ("Manga", "Manga"),
-        ("Webtoon", "Webtoon"),
-        ("Manhwa", "Manhwa"),
-        ("Manhua", "Manhua"),
-        ("Novel", "Novel"),
-        ("Webcomic", "Webcomic"),
-    )
-    type_manga = models.CharField("Tipo", max_length=8, choices=CHOICE_TYPE, blank=True)
     responsible_Group = models.CharField("Nome do Grupo", max_length=150, blank=True)
     sinopse = models.TextField("Sinopse", blank=True)
     capa = StdImageField("Capas dos Mangas", upload_to=manga_directory_path)
