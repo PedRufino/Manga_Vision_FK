@@ -385,3 +385,25 @@ a.rl-link{
     -webkit-transform: rotate(-135deg);
 }
 /* Fim Button Top */
+
+/* Setas and pages */
+
+.img-page{
+    width: 25px;
+}
+.page-link{
+    font-size: 20px;
+    color: black !important;
+    background-color:rgb(168, 238, 89);
+    border-color: rgb(83, 118, 43);
+}
+.page-link:hover{
+    background-color:rgb(86, 160, 0);
+    border-color: rgb(110, 206, 0);
+}
+
+.active>.page-link{
+    background-color:rgb(86, 160, 0);
+    border-color: rgb(110, 206, 0);
+}
+/* Fim Setas and pages */

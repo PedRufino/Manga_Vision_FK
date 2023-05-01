@@ -19,7 +19,6 @@ class VisionSerializer(serializers.ModelSerializer):
             "title",
             "author",
             "release_Year",
-            "type_manga",
             "genres",
             "responsible_Group",
             "sinopse",

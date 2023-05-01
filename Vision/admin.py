@@ -47,5 +47,5 @@ class RankAdmin(admin.ModelAdmin):
 
 
 @admin.register(store)
-class RankAdmin(admin.ModelAdmin):
+class StoreAdmin(admin.ModelAdmin):
     list_display = ("titulo", "valor", "link_img", "link_vitrine")

@@ -2,5 +2,76 @@
 {% load static %}
 {% block titulo %}Manga Store{% endblock %}
 {% block body %}
+<div class="row">
+    <div class="col-md-12 black-vision">
+        <h2 class="font2">Manga Vision Store</h2>
+        <div class="row">
+            {% for p in page_obj %}
+            <div class="col card-manga">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ p.link_img }}" class="card-img-top unic">
+                    <div class="card-body">
+                        <h5 class="card-title1">{{ p.titulo }}</h5>
+                        <p style="text-align: center; font-size: 20px;" class="card-text m-2">R${{ p.valor }}</p>
+                        <center>
+                            <a href="{{ p.link_vitrine }}" class="btn btn-success">Comprar</a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if is_paginated %}
 
+        <nav>
+            <ul class="pagination justify-content-center">
+
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-esquerda.png' %}"
+                                alt="Previous"></span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-esquerda.png' %}"
+                                alt="Previous"></span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for num in paginator.page_range %}
+
+                {% if page_obj.number == num %}
+                <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-direita.png' %}"
+                                alt="Next"></span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-direita.png' %}"
+                                alt="Next"></span>
+                    </a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.views.generic import TemplateView, ListView
 from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
-from .models import mangas, ClickManga, Chapter, Pagina, Rank
+from .models import mangas, ClickManga, Chapter, Pagina, Rank, store
 from datetime import date, timedelta
 from django.db.models import F
 
@@ -106,7 +106,7 @@ class IndexView(TemplateView):
 
 class ListMangasView(ListView):
     template_name = "mangas.html"
-    paginate_by = 30
+    paginate_by = 28
     model = mangas
     ordering = "id_manga"
     
@@ -135,16 +135,19 @@ class ListMangasView(ListView):
         return context
 
 
+class StoreView(ListView):
+    template_name = "store.html"
+    paginate_by = 25
+    model = store
+    ordering = "id"
+
+
 class PartyView(TemplateView):
     template_name = "party.html"
 
 
 class HelpView(TemplateView):
     template_name = "help.html"
-
-
-class StoreView(TemplateView):
-    template_name = "store.html"
 
 
 class HistoricView(TemplateView):
