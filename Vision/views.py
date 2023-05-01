@@ -98,7 +98,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context["all_mangas"] = mangas.objects.all()
+        context["all_mangas"] = mangas.objects.all().order_by('author')[:15]
         context["lancamentos"] = self.manga_date()
         context["mais_lidos"] = self.mais_lidos()
         return context

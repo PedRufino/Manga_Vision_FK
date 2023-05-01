@@ -52,13 +52,6 @@
                                 alt="Previous"></span>
                     </a>
                 </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-esquerda.png' %}"
-                                alt="Previous"></span>
-                    </a>
-                </li>
                 {% endif %}
 
                 {% for num in paginator.page_range %}
@@ -74,13 +67,6 @@
                 {% if page_obj.has_next %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-direita.png' %}"
-                                alt="Next"></span>
-                    </a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Next">
                         <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-direita.png' %}"
                                 alt="Next"></span>
                     </a>
