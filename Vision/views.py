@@ -1,10 +1,14 @@
-from django.views.generic import TemplateView, ListView
+from django.core.serializers.json import DjangoJSONEncoder
+from django.db.models.query import QuerySet
+from django.views.generic import TemplateView, ListView, View
 from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
 from .models import mangas, ClickManga, Chapter, Pagina, Rank, store
+from django.http import JsonResponse
 from datetime import date, timedelta
 from django.db.models import F
+from django.conf import settings
 
 
 def manga_reading(request, slug_):
@@ -110,6 +114,21 @@ class ListMangasView(ListView):
     model = mangas
     ordering = "id_manga"
     
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        letra = self.kwargs.get('order')
+        
+        if letra:
+            model = mangas.objects.filter(title__istartswith=letra).order_by('title')
+        elif letra == 'numero':
+            model = mangas.objects.filter(title__istartswith='-').order_by('title')
+        elif letra == "A-Z":
+            model = mangas.objects.all().order_by(self.ordering)
+        else:
+            model = mangas.objects.all().order_by(self.ordering)
+        return model
+    
+    
     def mais_lidos(self):
         img = [
             "../static/img/trofeus/taca-de-ouro.png",
@@ -132,8 +151,38 @@ class ListMangasView(ListView):
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)
         context["mais_lidos"] = self.mais_lidos()
+        context["alpha"] = ['A-Z','#','A','B','C','D','E']
+        context["alpha2"] = ['F','G','H','I','J','K','L']
+        context["alpha3"] = ['M','N','O','P','Q','R','S']
+        context["alpha4"] = ['T','U','V','W','X','Y','Z']
         return context
+    
+class MangasSearchView(ListView):
+    template_name = 'mangas.html'
 
+    def get(self, request):
+        manga_name = request.GET.get('manga_name')
+        mangasList = mangas.objects.all().order_by('id_manga')[:28]
+        
+        if manga_name:
+            mangasList = mangas.objects.filter(title__istartswith=manga_name)[:28]
+        
+        manga_list = []
+        
+        for mangaone in mangasList:
+            manga_data = {
+                'id_manga': mangaone.id_manga,
+                'title': mangaone.title,
+                'capa': request.build_absolute_uri(mangaone.capa.url),
+            }
+            manga_list.append(manga_data)
+        
+        return JsonResponse(manga_list, safe=False)
+    
+    def get_context_data(self, **kwargs):
+        context = super(ListView, self).get_context_data(**kwargs)
+        context['is_paginated'] = False
+        return context
 
 class StoreView(ListView):
     template_name = "store.html"

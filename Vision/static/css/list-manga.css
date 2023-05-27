@@ -1,0 +1,115 @@
+#az-order {
+    padding: 0 !important;
+    display: block;
+    margin: 3px 0 0;
+    text-align: center;
+    width: 100%
+}
+
+#az-order li {
+    display: table;
+    float: left;
+    width: 50%
+}
+
+#az-order li div.indLabel {
+    display: table-cell;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    width: 14%
+}
+
+#az-order li span {
+    background: rgb(168, 238, 89);
+    border-radius: 5px 5px 5px 5px;
+    color: #000000;
+    cursor: pointer;
+    display: block;
+    margin: 2px;
+    padding: 6px 0
+}
+
+#az-order li span:hover {
+    background-color: rgb(86, 160, 0);
+    border-color: rgb(110, 206, 0);
+}
+
+#az-order li div.active span {
+    background-color: rgb(86, 160, 0);
+    border-color: rgb(110, 206, 0);
+    box-shadow: 0 2px 0 0 rgba(0,0,0,.3);
+}
+
+.clear-fix:after,
+.clear-fix:before {
+    clear: both;
+    content:" ";
+    display: block;
+    float: none;
+    height: 0;
+    width: 0
+}
+
+ul {
+    list-style: none;
+}
+
+
+.pd-vision{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+@media screen and (max-width: 1536px){
+    #az-order{
+        font-size: 100%;
+    }
+}
+
+@media screen and (max-width: 1500px){
+    .col-xxl {
+        flex: 0 0 auto;
+    }
+}
+
+.col-my {
+    flex: 0 0 auto;
+    width: 14.28%;
+}
+
+@media screen and (max-width: 1920px){
+    .col-my {
+        flex: 0 0 auto;
+        width: 14.28%;
+    }
+}
+
+@media screen and (max-width: 1760px){
+    .col-my {
+        flex: 0 0 auto;
+        width: 16.64%;
+    }
+}
+
+@media screen and (max-width: 1500px){
+    .col-my {
+        flex: 1 0 0%;
+        width: 50%;
+    }
+}
+
+label {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+input::placeholder {
+    color: rgb(0, 0, 0) !important;
+}
+
+input{
+    background-color: #fff !important;
+}

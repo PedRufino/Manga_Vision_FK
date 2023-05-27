@@ -59,6 +59,12 @@ body {
     margin-top: 20px;
 }
 
+@media screen and (max-width: 400px) {
+    .black-vision{
+        padding: 10px;
+    }
+}
+
 #menu-vision {
     position: fixed;
     left: 0;
@@ -405,5 +411,60 @@ a.rl-link{
 .active>.page-link{
     background-color:rgb(86, 160, 0);
     border-color: rgb(110, 206, 0);
+}
+
+@media screen and (max-width: 450px){
+    .img-page{
+        width: 15px;
+    }
+
+    .page-link{
+        font-size: 14px;
+        color: black !important;
+        background-color:rgb(168, 238, 89);
+        border-color: rgb(83, 118, 43);
+    }
+}
+
+@media screen and (max-width: 1430px){
+    .col-md-9 {
+        flex: 0 0 auto;
+        width: 66.66666667% !important; 
+    }
+
+    .col-md-3{
+        flex: 0 0 auto;
+        width: 33.33333333% !important;
+    }
+
+    #az-order li {
+        display: table;
+        float: left;
+        width: 100%
+    }
+}
+
+@media screen and (max-width: 1170px){
+    .col-md-9 {
+        flex: 0 0 auto;
+        width: 58.33333333% !important; 
+    }
+
+    .col-md-3{
+        flex: 0 0 auto;
+        width: 41.66666667% !important;
+    }
+}
+
+@media screen and (max-width: 960px){
+    .col-md-9 {
+        flex: 0 0 auto;
+        width: 100% !important; 
+    }
+
+    .col-md-3{
+        flex: 0 0 auto;
+        width: 100% !important;
+    }
 }
 /* Fim Setas and pages */

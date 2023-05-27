@@ -1,27 +1,94 @@
 {% extends 'BaseVision.html' %}
 {% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/list-manga.css' %}">
+{% endblock %}
 {% block titulo %}Lista de Títulos{% endblock %}
 {% block body %}
 <div class="row">
     <div class="col-md-9 black-vision">
-        <h2 class="font2">Lista de Mangas</h2>
-        <div class="row">
-            {% for p in page_obj %}
-            <div class="col card-manga">
-                <div class="card">
-                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="acard" href="#"
-                        title="Leia {{ p.title }} Online!" data-item-id="{{ p.id_manga }}">
-                        <img class="card-img-top unic" src="{{ p.capa.url }}" alt="{{ p.title }}">
-                    </a>
-                    <div class="card-body">
-                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"
-                            title="Leia {{ p.title }} Online!" data-item-id="{{ p.id_manga }}">
-                            <h5 class="card-title1">{{ p.title }}</h5>
+        <ul class="clear-fix" id="az-order">
+            <li>
+                {% for alfa in alpha %}
+                    {% if alfa == 'A-Z' %}
+                        <div id="{{ alfa }}" class="alphabet indLabel">
+                            <a href="/lista-de-titulos/A-Z">
+                                <span>{{ alfa }}</span>
+                            </a>
+                        </div>
+                    {% elif alfa == '#' %}
+                        <div id="{{ alfa }}" class="alphabet indLabel">
+                            <a href="/lista-de-titulos/numero">
+                                <span>{{ alfa }}</span>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div id="{{ alfa }}" class="alphabet indLabel">
+                            <a href="/lista-de-titulos/{{ alfa }}">
+                                <span>{{ alfa }}</span>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </li>
+            <li>
+                {% for alfa in alpha2 %}
+                    <div id="{{ alfa }}" class="alphabet indLabel">
+                        <a href="/lista-de-titulos/{{ alfa }}">
+                            <span>{{ alfa }}</span>
                         </a>
                     </div>
-                </div>
+                {% endfor %}
+            </li>
+            <li>
+                {% for alfa in alpha3 %}
+                    <div id="{{ alfa }}" class="alphabet indLabel">
+                        <a href="/lista-de-titulos/{{ alfa }}">
+                            <span>{{ alfa }}</span>
+                        </a>
+                    </div>
+                {% endfor %}
+            </li>
+            <li>
+                {% for alfa in alpha4 %}
+                    <div id="{{ alfa }}" class="alphabet indLabel">
+                        <a href="/lista-de-titulos/{{ alfa }}">
+                            <span>{{ alfa }}</span>
+                        </a>
+                    </div>
+                {% endfor %}
+            </li>
+            <li></li>
+        </ul>
+        <div class="row">
+            <div class="col">
+                <label>Titulo:</label>
+                <input class="form-control" type="text" id="manga-name-input" placeholder="Digite o nome do cliente"> 
             </div>
-            {% endfor %}
+            <div class="col">
+                
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div style="display: flex;flex-wrap: wrap;" id="search-results">
+                {% for p in page_obj %}
+                <div class="col-my card-manga">
+                    <div class="card">
+                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="acard" href="#"
+                            title="Leia {{ p.title }} Online!" data-item-id="{{ p.id_manga }}">
+                            <img class="card-img-top unic" src="{{ p.capa.url }}" alt="{{ p.title }}">
+                        </a>
+                        <div class="card-body">
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"
+                                title="Leia {{ p.title }} Online!" data-item-id="{{ p.id_manga }}">
+                                <h5 class="card-title1">{{ p.title }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="MangaBaseName" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="color: black;">
@@ -40,45 +107,58 @@
                 </div>
             </div>
         </div>
-        {% if is_paginated %}
 
-        <nav>
-            <ul class="pagination justify-content-center">
+        <div id="not-pagination">
+            {% if is_paginated %}
+                <nav>
+                    <ul class="pagination justify-content-center">
 
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                        <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-esquerda.png' %}"
-                                alt="Previous"></span>
-                    </a>
-                </li>
-                {% endif %}
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-esquerda.png' %}"
+                                        alt="Previous"></span>
+                            </a>
+                        </li>
+                        {% endif %}
 
-                {% for num in paginator.page_range %}
+                        {% for pg in page_obj.paginator.page_range %}
+                            <!-- Sempre mostra as 3 primeiras e 3 últimas páginas -->
+                            {% if pg <= 3 or pg >= page_obj.paginator.num_pages|add:'-2' %}
+                                {% if page_obj.number == pg %}
+                                    <li class="page-item active"><a class="page-link" href="?page={{ pg }}">{{ pg }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ pg }}">{{ pg }}</a></li>
+                                {% endif %}
+                        
+                            {% else %}
+                        
+                                {% if page_obj.number == pg %}
+                                    <li class="page-item active"><a class="page-link" href="?page={{ pg }}">{{ pg }}</a></li>
+                                {% elif pg > page_obj.number|add:'-4' and pg < page_obj.number|add:'4' %} <!-- Mostra 3 páginas antes e 3 páginas depois da atual -->
+                                    <li class="page-item"><a class="page-link" href="?page={{ pg }}">{{ pg }}</a></li>
+                                {% elif pg == page_obj.number|add:'-4' or pg == page_obj.number|add:'4' %}
+                                    <li class="page-item"><a class="page-link" href="">...</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
 
-                {% if page_obj.number == num %}
-                <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
-                {% else %}
-                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                {% endif %}
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-direita.png' %}"
+                                        alt="Next"></span>
+                            </a>
+                        </li>
+                        {% endif %}
 
-                {% endfor %}
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
 
-                {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true"><img class="img-page" src="{% static 'img/seta-direita.png' %}"
-                                alt="Next"></span>
-                    </a>
-                </li>
-                {% endif %}
-
-            </ul>
-        </nav>
-
-        {% endif %}
     </div>
-    <div class="col-xl-3">
+    <div class="col-md-3">
         <div class="manga-views black-vision" aria-labelledby="MangaBaseName">
             <h2 class="font2" style="margin-top: 20px; margin-bottom: 20px;">Mais Lidos</h2>
             {% for ML in mais_lidos %}
@@ -98,34 +178,6 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        var mangas = {};
-        $.ajax({
-            url: "/api/v1/",
-            dataType: "json",
-            success: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    mangas[data[i].id_manga] = data[i];
-                }
-            },
-            error: function () {
-                alert("Ocorreu um erro ao buscar as informações dos mangás.");
-            }
-        });
-        $(".acard").click(function (event) {
-            event.preventDefault();
-            var id_manga = $(this).data("item-id");
-            var manga = mangas[id_manga];
-            var url = window.location.origin;
-            $("#MangaBaseName").text(manga.title);
-            $("#manga-sinopse").text(manga.sinopse);
-            $("#manga-capa-img").attr("src", manga.capa);
-            $("#manga-url-capitulo").attr({
-                "href": url + '/manga/' + manga.slug,
-                "title": 'Ler ' + manga.title + ' Online!'
-            });
-        });
-    });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{% static 'js/listmanga.vision.js' %}"></script>
 {% endblock %}
