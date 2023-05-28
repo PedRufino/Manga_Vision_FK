@@ -61,7 +61,7 @@
             <li></li>
         </ul>
         <div class="row">
-            <div class="col">
+            <div class="col-md">
                 <label>Titulo:</label>
                 <input class="form-control" type="text" id="manga-name-input" placeholder="Digite o nome do cliente"> 
             </div>
@@ -71,7 +71,7 @@
         </div>
         <hr>
         <div class="row">
-            <div style="display: flex;flex-wrap: wrap;" id="search-results">
+            <div style="display: flex; flex-wrap: wrap;" id="search-results">
                 {% for p in page_obj %}
                 <div class="col-my card-manga">
                     <div class="card">
@@ -165,11 +165,11 @@
             <div class="manga-item" data-item-id="{{ ML.id_manga }}">
                 <div><img class="rl-trofeu" src="{{ ML.url_trofeu }}"></div>
                 <div class="mv_img2">
-                    <a href="" title=""><img src="{{ ML.url_img.url }}" alt="{{ ML.title }}"></a>
+                    <a href="/manga/{{ ML.slug }}" title="Ler {{ ML.title }} Online!"><img src="{{ ML.url_img.url }}" alt="{{ ML.title }}"></a>
                 </div>
                 <div class="rl-content">
                     <span class="rl-title"><a class="title" title="Ler {{ ML.title }} Online!"
-                            href="manga/{{ ML.slug }}">{{ ML.title }}</a></span>
+                            href="/manga/{{ ML.slug }}">{{ ML.title }}</a></span>
                     <span class="rl-genre">{{ ML.genero }}</span>
                 </div>
             </div>
