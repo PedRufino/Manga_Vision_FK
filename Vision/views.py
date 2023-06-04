@@ -9,6 +9,7 @@ from django.http import JsonResponse
 from datetime import date, timedelta
 from django.db.models import F
 from django.conf import settings
+import re
 
 
 def manga_reading(request, slug_):
@@ -119,14 +120,16 @@ class ListMangasView(ListView):
         letra = self.kwargs.get('order')
         id_genre = self.kwargs.get('id_genre')
         
-        if id_genre:
-            model = mangas.objects.filter(genre__id_gender=id_genre).order_by('title')
-            return model
+        caracteres_individuais = ['-', '\'', '"', '.', ':']
+        regex = r'^[' + re.escape(''.join(caracteres_individuais)) + ']'
         
         if letra:
-            model = mangas.objects.filter(title__istartswith=letra).order_by('title')
-        elif letra == 'numero':
-            model = mangas.objects.filter(title__istartswith='-').order_by('title')
+            if letra == 'numero':
+                model = mangas.objects.filter(title__iregex=regex).order_by('title')
+            else:
+                model = mangas.objects.filter(title__istartswith=letra).order_by('title')
+        elif id_genre:
+            model = mangas.objects.filter(genre__id_gender=id_genre).order_by('title')
         elif letra == "A-Z":
             model = mangas.objects.all().order_by(self.ordering)
         else:

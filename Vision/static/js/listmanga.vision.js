@@ -13,14 +13,16 @@ $(document).ready(function () {
             alert("Ocorreu um erro ao buscar as informações dos mangás.");
         }
     });
-    $(document).on("click", ".acard", function(event) {
+    $(document).on("click", ".acard", ".atitle", function(event) {
         event.preventDefault();
         var id_manga = $(this).data("item-id");
-        console.log(id_manga)
+        console.log(id_manga);
         var manga = mangas[id_manga];
         var url = window.location.origin;
+        var genres = manga.genres.join(', ')
         $("#MangaBaseName").text(manga.title);
         $("#manga-sinopse").text(manga.sinopse);
+        $("#manga-genres").text(genres);
         $("#manga-capa-img").attr("src", manga.capa);
         $("#manga-url-capitulo").attr({
             "href": url + '/manga/' + manga.slug,

@@ -86,9 +86,9 @@
                             <img class="card-img-top unic" src="{{ p.capa.url }}" alt="{{ p.title }}">
                         </a>
                         <div class="card-body">
-                            <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"
-                                title="Leia {{ p.title }} Online!" data-item-id="{{ p.id_manga }}">
-                                <h5 class="card-title1">{{ p.title }}</h5>
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="acard" href="#"
+                            title="Leia {{ p.title }} Online!" data-item-id="{{ p.id_manga }}">
+                            <h5 class="card-title1">{{ p.title }}</h5>
                             </a>
                         </div>
                     </div>
@@ -99,9 +99,10 @@
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="MangaBaseName" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="color: black;">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="MangaBaseName"></h1>
+                    <div class="modal-header row">
+                        <h1 class="modal-title col-11 fs-5" id="MangaBaseName"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <span class="" id="manga-genres"></span>
                     </div>
                     <div class="modal-snps m-3">
                         <span class="modal-sinopse text-justify" id="manga-sinopse"></span>
