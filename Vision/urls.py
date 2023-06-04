@@ -5,6 +5,7 @@ urlpatterns = [
     path("", IndexView.as_view(), name="index"),
     path("lista-de-titulos/A-Z", ListMangasView.as_view(), name="mangas.html"),
     path("lista-de-titulos/<str:order>", ListMangasView.as_view(), name="alpha_beto.html"),
+    path("lista-de-titulos/A-Z/search-genero/<str:id_genre>", ListMangasView.as_view(), name="genre_list.html"),
     path('lista-de-titulos/A-Z/search/', MangasSearchView.as_view(), name='manga_search.html'),
     path("historico-favoritos/", HistoricView.as_view(), name="historic.html"),
     path("meu-duo/", PartyView.as_view(), name="party.html"),

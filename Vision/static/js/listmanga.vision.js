@@ -100,3 +100,20 @@ document.addEventListener("DOMContentLoaded", function() {
         link.classList.add("active");
     }
 });
+var selectElement = document.getElementById("select-genre");
+var selectedGenre = localStorage.getItem("selectedGenre");
+if (selectedGenre) {
+    selectElement.value = selectedGenre;
+}
+
+function redirectToGenre() {
+    var selectedGenre = selectElement.value;
+
+    if (selectedGenre !== "") {
+        console.log(selectedGenre)
+        localStorage.setItem("selectedGenre", selectedGenre);
+        window.location.href = "/lista-de-titulos/A-Z/search-genero/" + selectedGenre;
+    }if(selectedGenre === "Selecione o genero"){
+        window.location.href = "/lista-de-titulos/A-Z";
+    }
+}

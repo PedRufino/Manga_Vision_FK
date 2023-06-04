@@ -63,10 +63,16 @@
         <div class="row">
             <div class="col-md">
                 <label>Titulo:</label>
-                <input class="form-control" type="text" id="manga-name-input" placeholder="Digite o nome do cliente"> 
+                <input class="form-control" type="text" id="manga-name-input" placeholder="Digite o nome do manga"> 
             </div>
             <div class="col">
-                
+                <label>Generos:</label>
+                <select id="select-genre" class="form-select" aria-label="Default select example" onchange="redirectToGenre()">
+                    <option selected="">Selecione o genero</option>
+                    {% for genre in genres %}
+                        <option value="{{ genre.id_gender }}">{{ genre.genero }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
         <hr>

@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView, View
 from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
-from .models import mangas, ClickManga, Chapter, Pagina, Rank, store
+from .models import mangas, Chapter, Pagina, Rank, store, genres
 from django.http import JsonResponse
 from datetime import date, timedelta
 from django.db.models import F
@@ -117,6 +117,11 @@ class ListMangasView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         letra = self.kwargs.get('order')
+        id_genre = self.kwargs.get('id_genre')
+        
+        if id_genre:
+            model = mangas.objects.filter(genre__id_gender=id_genre).order_by('title')
+            return model
         
         if letra:
             model = mangas.objects.filter(title__istartswith=letra).order_by('title')
@@ -131,9 +136,9 @@ class ListMangasView(ListView):
     
     def mais_lidos(self):
         img = [
-            "../static/img/trofeus/taca-de-ouro.png",
-            "../static/img/trofeus/taca-de-prata.png",
-            "../static/img/trofeus/taca-de-bronze.png",
+            "/static/img/trofeus/taca-de-ouro.png",
+            "/static/img/trofeus/taca-de-prata.png",
+            "/static/img/trofeus/taca-de-bronze.png",
         ]
         MaisLidos = [
             {
@@ -155,6 +160,7 @@ class ListMangasView(ListView):
         context["alpha2"] = ['F','G','H','I','J','K','L']
         context["alpha3"] = ['M','N','O','P','Q','R','S']
         context["alpha4"] = ['T','U','V','W','X','Y','Z']
+        context["genres"] = genres.objects.all()
         return context
     
 class MangasSearchView(ListView):
