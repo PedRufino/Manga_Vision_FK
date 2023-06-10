@@ -58,42 +58,6 @@
     background-size: 100%;
 }
 
-.Historic {
-    display: inline-block;
-    width: 1.2em;
-    height: 1.2em;
-    margin-right: 10px;
-    vertical-align: middle;
-    background-image: url(../img/Historic.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-}
-
-.Help {
-    display: inline-block;
-    width: 1.2em;
-    height: 1.2em;
-    margin-right: 10px;
-    vertical-align: middle;
-    background-image: url(../img/Ajuda.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-}
-
-.Party {
-    display: inline-block;
-    width: 1.2em;
-    height: 1.2em;
-    margin-right: 10px;
-    vertical-align: middle;
-    background-image: url(../img/União.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-}
-
 .Contato {
     display: inline-block;
     width: 1.2em;

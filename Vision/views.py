@@ -130,7 +130,7 @@ class ListMangasView(ListView):
                 model = mangas.objects.filter(title__istartswith=letra).order_by('title')
         elif id_genre:
             model = mangas.objects.filter(genre__id_gender=id_genre).order_by('title')
-        elif letra == "A-Z":
+        elif letra == "A-Z" or id_genre == 0:
             model = mangas.objects.all().order_by(self.ordering)
         else:
             model = mangas.objects.all().order_by(self.ordering)
@@ -198,19 +198,6 @@ class StoreView(ListView):
     paginate_by = 25
     model = store
     ordering = "id"
-
-
-class PartyView(TemplateView):
-    template_name = "party.html"
-
-
-class HelpView(TemplateView):
-    template_name = "help.html"
-
-
-class HistoricView(TemplateView):
-    template_name = "historic.html"
-
 
 def contact(request):
     if str(request.method) == "POST":

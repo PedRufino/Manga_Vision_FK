@@ -119,3 +119,24 @@ function redirectToGenre() {
         window.location.href = "/lista-de-titulos/A-Z";
     }
 }
+
+var selectElement = document.getElementById("select-genre");
+var selectedGenre = localStorage.getItem("selectedGenre");
+
+localStorage.removeItem("selectedGenre");
+
+if (!selectedGenre) {
+    localStorage.setItem("selectedGenre", "Selecione o genero");
+} else {
+    selectElement.value = selectedGenre;
+}
+
+function redirectToGenre() {
+    var selectedGenre = selectElement.value;
+    if (selectedGenre === "Selecione o genero"){
+        window.location.href = "/lista-de-titulos/A-Z";
+    }else if (selectedGenre !== "") {
+        localStorage.setItem("selectedGenre", selectedGenre);
+        window.location.href = "/lista-de-titulos/A-Z/search-genero/" + selectedGenre;
+    }
+}
