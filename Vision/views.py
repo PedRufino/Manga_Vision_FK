@@ -1,15 +1,20 @@
-from django.core.serializers.json import DjangoJSONEncoder
-from django.db.models.query import QuerySet
-from django.views.generic import TemplateView, ListView, View
+from django.views.generic import TemplateView, ListView
+from datetime import date, timedelta
+from django.http import JsonResponse
 from .forms import ContatoModelForm
 from django.shortcuts import render
 from django.contrib import messages
-from .models import mangas, Chapter, Pagina, Rank, store, genres
-from django.http import JsonResponse
-from datetime import date, timedelta
 from django.db.models import F
-from django.conf import settings
 import re
+from .models import (
+    MangaRating,
+    Chapter,
+    Pagina,  
+    mangas,
+    genres,
+    store, 
+    Rank 
+)
 
 
 def manga_reading(request, slug_):
@@ -34,12 +39,28 @@ def manga_reading(request, slug_):
         status = "Abandonado"
     elif manga.finished == True:
         status = "Finalizado"
+    
+    # Média das avaliações
+    manga_ratings = MangaRating.objects.filter(manga=manga)
+
+    total_votes = 0
+    weighted_sum = 0
+
+    for rating in manga_ratings:
+        total_votes += rating.total
+        weighted_sum += rating.rating * rating.total
+
+    if total_votes > 0:
+        average_rating = round(weighted_sum / total_votes,2)
+    else:
+        average_rating = 0
 
     # leva o conteudo do chap_all para o html
     context = {
-        "capitulo": chap_all,
+        "avaliacoes":average_rating,
         "first": chap_all.first(),
         "last": chap_all.last(),
+        "capitulo": chap_all,
         "status": status,
         "manga": manga,
         "genre": genre,
@@ -57,6 +78,18 @@ def chapter_reading(request, slug_, cap_):
         "page": page,
     }
     return render(request, "page_reading.html", context)
+
+def save_rating(request, slug_, rate):
+    manga = mangas.objects.get(slug=slug_)
+    # Adiciona 1 ponto para o manga selecionado
+    try:
+        rate_ = MangaRating.objects.get(manga=manga, rating=rate)
+        rate_.total += 1
+        rate_.save()
+    except Exception as erro:
+        MangaRating.objects.create(manga=manga, rating=rate, total=1)
+    return render(request, "manga_info.html")
+
 
 
 class IndexView(TemplateView):

@@ -191,11 +191,11 @@ class FormContato(models.Model):
 
 class MangaRating(models.Model):
     manga = models.ForeignKey(mangas, on_delete=models.CASCADE)
-    rating = models.PositiveSmallIntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    rating = models.IntegerField(default=0)
+    total = models.PositiveIntegerField(default=0)
 
     class Meta:
-        ordering = ["rating"]
+        ordering = ["manga"]
 
 
 """

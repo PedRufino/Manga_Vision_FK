@@ -1,74 +1,139 @@
 {% extends 'BaseVision.html' %}
 {% load static %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/manga-info.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+<link rel="stylesheet" href="{% static 'css/manga-info.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 {% endblock %}
 {% block titulo %}{{ manga.title }} - Manga Vision{% endblock %}
 {% block body %}
-    <div class="row main-info">
-        <div class="col-lg-3 rl-col">
-            <img class="img-capa-manga mx-auto" style="max-height: 100%; min-height: 100%;" src="{{ manga.capa.url }}" alt="{{ manga.title }}">
-            <div class="stars">
-                <i class="fa-solid fa-star" value="1"></i>
-                <i class="fa-solid fa-star" value="2"></i>
-                <i class="fa-solid fa-star" value="3"></i>
-                <i class="fa-solid fa-star" value="4"></i>
-                <i class="fa-solid fa-star" value="5"></i>
-            </div>
-        </div>
-        <div class="col-lg rl-col2">
+<div class="body-info">
+    <ul class="list-info main-info black-vision">
+        <li>
+            <img class="img-capa-manga mx-auto" style="max-height: 100%; min-height: 100%;" src="{{ manga.capa.url }}"
+                alt="{{ manga.title }}">
+            <ul class="list-rate">
+                <li class="li-rate">
+                    <div style="margin-right: 20px;">
+                        <i class="fa-solid fa-star fa-spin fa-spin-reverse" style="color: #dccb0e; font-size: 20px;"></i>
+                        <span class="rate-text">{{ avaliacoes }}</span>
+                    </div>
+                </li>
+                <li>
+                    <div data-item-id="{{ manga.id_manga }}" class="stars">
+                        <i class="fa-solid fa-star" value="1"></i>
+                        <i class="fa-solid fa-star" value="2"></i>
+                        <i class="fa-solid fa-star" value="3"></i>
+                        <i class="fa-solid fa-star" value="4"></i>
+                        <i class="fa-solid fa-star" value="5"></i>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="li-info">
             <h1 class="rl-manga-title">{{ manga.title }}</h1>
-            <p class="rl-manga-subtitle">Autor: {{ manga.author }}</p>
+            
+            <ul class="ul-info-li">
+                <li class="listone"><p class="rl-manga-subtitle">Autor: {{ manga.author }} </p></li>
+                <li class="listtwo"><p class="rl-manga-subtitle">Ano de Lançamento: {{ manga.release_Year }} </p></li>
+                <li class="listthree"><p class="rl-manga-subtitle">Status: {{ status }} </p></li>
+            </ul>
             {% for genre in genre %}
-                <span class="generos">{{ genre }}</span>
+            <span class="generos">{{ genre }}</span>
             {% endfor %}
-            <div class="col-lg bg-light rl-col3">
-                <p>Status: {{ status }}</p>
-                <p>Ano de Lançamento: {{ manga.release_Year }}</p>
-            </div>
             <div class="rl-manga-snps">
                 <p class="rl-manga-sinopse">{{ manga.sinopse }}</p>
             </div>
-        </div>
-        <div class="title-cap">
-            <h3 class="capitulo">Capítulos de {{ manga.title }}</h3>
-        </div>
-        <div class="row" style="margin-top: 10px;">
-            <a class="col manga-header" style="margin-right: 10px;" href="{{ manga.slug }}/ler/capitulo-{{ first.order }}" title="Ler Capítulo {{ first.order }} de {{ manga.title }} Online!">
-                <span class="title-span">Primeiro Capítulo</span>
-                <span>Capítulo {{ first.order }}</span>
-            </a>
-            <a class="col manga-header" href="{{ manga.slug }}/ler/capitulo-{{ last.order }}" title="Ler Capítulo {{ last.order }} de {{ manga.title }} Online!">
-                <span class="title-span">Novo Capítulo</span>
-                <span>Capítulo {{ last.order }}</span>
-            </a>
-        </div>
-        <div class="col-cap">
-            {% for cap in capitulo %}
-                <div class="manga-index-header2">
-                    <a class="anc" href="{{ manga.slug }}/ler/capitulo-{{ cap.order }}" title="Ler Capítulo {{cap.order }} de {{ manga.title }} Online!">
-                        Capítulo {{cap.order}}
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+        </li>
+    </ul>
+    <div class="title-cap">
+        <h3 class="capitulo">Capítulos de {{ manga.title }}</h3>
     </div>
-    <script>
-        // Select all elements with the "i" tag and store them in a NodeList called "stars"
-        const stars = document.querySelectorAll(".stars i");
+    <div class="row" style="margin-top: 10px;">
+        <a class="col manga-header" style="margin-right: 10px;" href="{{ manga.slug }}/ler/capitulo-{{ first.order }}"
+            title="Ler Capítulo {{ first.order }} de {{ manga.title }} Online!">
+            <span class="title-span">Primeiro Capítulo</span>
+            <span>Capítulo {{ first.order }}</span>
+        </a>
+        <a class="col manga-header" href="{{ manga.slug }}/ler/capitulo-{{ last.order }}"
+            title="Ler Capítulo {{ last.order }} de {{ manga.title }} Online!">
+            <span class="title-span">Novo Capítulo</span>
+            <span>Capítulo {{ last.order }}</span>
+        </a>
+    </div>
+    <div class="col-cap">
+        {% for cap in capitulo %}
+        <div class="manga-index-header2">
+            <a class="anc" href="{{ manga.slug }}/ler/capitulo-{{ cap.order }}"
+                title="Ler Capítulo {{cap.order }} de {{ manga.title }} Online!">
+                Capítulo {{cap.order}}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const stars = document.querySelectorAll(".stars i");
+    const container = document.querySelector(".stars");
+    const mangaId = container.getAttribute("data-item-id");
+    const title = document.querySelector('.rl-manga-title').textContent;
 
-        // Loop through the "stars" NodeList
-        stars.forEach((star, index1) => {
-            // Add an event listener that runs a function when the "click" event is triggered
-            star.addEventListener("click", () => {
-                // Loop through the "stars" NodeList Again
-                stars.forEach((star, index2) => {
-                    // Add the "active" class to the clicked star and any stars with a lower index
-                    // and remove the "active" class from any stars with a higher index
-                    index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
-                });
-            });
+    function updateStars(activeStars) {
+        stars.forEach((star, index) => {
+            if (index <= activeStars) {
+                star.classList.add("active");
+            } else {
+                star.classList.remove("active");
+            }
         });
-    </script>
+    }
+
+    stars.forEach((star, index) => {
+        star.addEventListener("click", () => {
+            const value = star.getAttribute("value");
+            const ratingData = {
+                stars: index + 1,
+                title: title,
+            };
+
+            const storageKey = `ratingData_${mangaId}`;
+            const existingRatingDataString = localStorage.getItem(storageKey);
+            let existingRatingData = {};
+
+            if (existingRatingDataString) {
+                existingRatingData = JSON.parse(existingRatingDataString);
+            }
+
+            existingRatingData[mangaId] = ratingData;
+
+            localStorage.setItem(storageKey, JSON.stringify(existingRatingData));
+
+            const urlRate = window.location.href + "/" + value;
+            jQuery.ajax({
+                url: urlRate,
+                success: function (data) {
+                    console.log(data);
+                },
+            });
+
+            updateStars(index);
+        });
+    });
+
+    const storageKey = `ratingData_${mangaId}`;
+    const existingRatingDataString = localStorage.getItem(storageKey);
+
+    if (existingRatingDataString) {
+        const existingRatingData = JSON.parse(existingRatingDataString);
+        const ratingData = existingRatingData[mangaId];
+
+        if (ratingData) {
+            const activeStars = ratingData.stars - 1;
+            updateStars(activeStars);
+        }
+    }
+
+
+
+</script>
 {% endblock %}

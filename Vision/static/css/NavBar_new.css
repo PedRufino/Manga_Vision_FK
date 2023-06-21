@@ -83,8 +83,8 @@
     background-size: 100%;
 }
 
-li{
-    margin-bottom: 20px;
+.list-menu{
+    margin-bottom: 20px !important;
 }
 
 @media screen and (max-width: 500px) {}

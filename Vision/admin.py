@@ -38,7 +38,7 @@ class genresAdmin(admin.ModelAdmin):
 
 @admin.register(MangaRating)
 class MangaRatingAdmin(admin.ModelAdmin):
-    list_display = ("manga", "rating", "created_at")
+    list_display = ("manga", "rating", "total")
 
 
 @admin.register(Rank)
@@ -49,3 +49,7 @@ class RankAdmin(admin.ModelAdmin):
 @admin.register(store)
 class StoreAdmin(admin.ModelAdmin):
     list_display = ("titulo", "valor", "link_img", "link_vitrine")
+
+@admin.register(VisionMangasGenre)
+class VisionMangasGenreAdmin(admin.ModelAdmin):
+    list_display = ("id", "mangas", "genres")

@@ -13,22 +13,7 @@
             </picture>
         {% endfor %}
     </div>
-    <button onclick="voltarAoTopo()" id="btnVoltarAoTopo" title="Voltar ao topo"><img class="arrow" src="{% static 'img/seta.png' %}" alt=""></button>
-    {% comment %} <script>
-        window.addEventListener('scroll', function () {
-            // Obtenha todas as imagens da página
-            var images = document.querySelectorAll('[reader-page]');
-        
-            // Percorra todas as imagens para determinar qual delas está sendo exibida
-            for (var i = 0; i < images.length; i++) {
-                // Verifique se a imagem atual está sendo exibida
-                if (images[i].offsetTop < window.scrollY + window.innerHeight && images[i].offsetTop + images[i].offsetHeight > window.scrollY) {
-                    // Atualize a hash da URL com o valor do atributo reader-page da imagem atual
-                    window.location.hash = '/page-' + images[i].getAttribute('reader-page');
-                }
-            }
-        });
-    </script> {% endcomment %}
+    <button onclick="voltarAoTopo()" id="btnVoltarAoTopo" title="Voltar ao topo"><img class="arrow" src="{% static 'img/seta-cima.png' %}" alt=""></button>
     {% with request.build_absolute_uri as disqus_url %}
         <div id="disqus_thread"></div>
         <script>
