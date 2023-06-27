@@ -1,0 +1,154 @@
+/* Image Caps */
+.manga-page img{
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+    padding: 0;
+}
+/*Fim Image Caps */
+
+.info-reading{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+}
+
+
+
+.accordion{
+    width: 500px;
+    --bs-accordion-border-color: rgb(86, 160, 0);
+    --bs-accordion-active-color: rgb(110, 206, 0);
+    --bs-accordion-btn-color: #fff;
+    --bs-accordion-btn-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:%23ffffff}</style><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+    --bs-accordion-btn-active-icon: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:%236ece00}</style><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(110, 206, 0, 0.25);
+}
+.accordion-item{
+    background-color: rgba(0,0,0,50%) !important;
+    border: 0;
+}
+
+.accordion-header{
+    background-color: rgba(0,0,0,5%) !important;
+}
+
+.accordion-button{
+    background-color: rgba(0,0,0,5%) !important;
+    padding: 10px !important;
+}
+
+.accordion-body{
+    background-color: rgba(0,0,0,50%) !important;
+}
+
+.genreR {
+    margin: 10px 3px 10px 0;
+    display: inline-block;
+    background: #167b00;
+    font-weight: 500;
+    font-family: 'Roboto Regular';
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 3px;
+}
+
+.ullistR{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    text-align: justify !important;
+}
+
+.sinopseR{
+    margin-top: 5px;
+    font-size: 15px;
+    font-family: 'Groteska';
+    color: #979797;
+}
+
+span{
+    font-family: 'Groteska';
+}
+
+.three-column-ul{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items:center;
+    padding: 0;
+    align-items: center;
+}
+
+.column-item{
+    list-style-type: none;
+    position: relative;
+}
+
+.btn-secondary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: rgba(0,0,0,50%);
+    --bs-btn-color: #fff;
+    --bs-btn-bg: rgba(0,0,0,50%);
+    --bs-btn-border-color: rgba(0,0,0,50%);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgba(0,0,0,50%);
+    --bs-btn-hover-border-color: rgba(0,0,0,50%);
+    --bs-btn-focus-shadow-rgb: 130,138,145;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: rgba(0,0,0,50%);
+    --bs-btn-active-border-color: rgba(0,0,0,50%);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: rgba(0,0,0,50%);
+    --bs-btn-disabled-border-color: rgba(0,0,0,50%);
+}
+
+.btn{
+    height: 60.38px;
+    width: 200px;
+    --bs-btn-focus-box-shadow:0 0 0 0.25rem rgba(110, 206, 0, 0.25);
+    font-family: 'Groteska';
+}
+
+.dropdown-menu{
+    width: 200px;
+    text-align: center;
+    --bs-dropdown-bg: rgb(0,0,0);
+    --bs-dropdown-link-color: #fff !important;
+    font-family: 'Groteska';
+}
+
+.dropdown{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -30px; 
+    transform: translateX(-50%);
+}
+
+@media screen and (max-width: 1100px) {
+    .three-column-ul {
+        display: flex;
+        padding: 0;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 505px) {
+    .accordion{
+        margin-left: 2px !important;
+        margin-right: 2px !important;
+        width: 330px;
+    }
+}
+

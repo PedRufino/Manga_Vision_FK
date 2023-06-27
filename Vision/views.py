@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, View
 from datetime import date, timedelta
 from django.http import JsonResponse
 from .forms import ContatoModelForm
@@ -68,16 +68,23 @@ def manga_reading(request, slug_):
     return render(request, "manga_info.html", context)
 
 
-def chapter_reading(request, slug_, cap_):
-    manga = mangas.objects.get(slug=slug_)
-    chapter = Chapter.objects.get(order=cap_, manga=manga)
-    page = Pagina.objects.filter(capitulo=chapter)
-    context = {
-        "manga": manga,
-        "chapter": chapter,
-        "page": page,
-    }
-    return render(request, "page_reading.html", context)
+class ChapterReadingView(View):
+    def get(self, request, slug_, cap_):
+        manga = mangas.objects.get(slug=slug_)
+        genre = manga.genre.values_list("genero", flat=True)
+        chapter = Chapter.objects.get(order=cap_, manga=manga)
+        page = Pagina.objects.filter(capitulo=chapter)
+        chap_all = Chapter.objects.filter(manga=manga).order_by('-order')
+        print(chapter)
+        context = {
+            "manga": manga,
+            "chapter": chap_all,
+            "page": page,
+            "genre": genre
+        }
+        return render(request, "page_reading.html", context)
+
+
 
 def save_rating(request, slug_, rate):
     manga = mangas.objects.get(slug=slug_)
@@ -89,7 +96,6 @@ def save_rating(request, slug_, rate):
     except Exception as erro:
         MangaRating.objects.create(manga=manga, rating=rate, total=1)
     return render(request, "manga_info.html")
-
 
 
 class IndexView(TemplateView):
@@ -198,7 +204,8 @@ class ListMangasView(ListView):
         context["alpha4"] = ['T','U','V','W','X','Y','Z']
         context["genres"] = genres.objects.all()
         return context
-    
+
+
 class MangasSearchView(ListView):
     template_name = 'mangas.html'
 
@@ -226,11 +233,13 @@ class MangasSearchView(ListView):
         context['is_paginated'] = False
         return context
 
+
 class StoreView(ListView):
     template_name = "store.html"
     paginate_by = 25
     model = store
     ordering = "id"
+
 
 def contact(request):
     if str(request.method) == "POST":

@@ -1,36 +1,81 @@
 {% extends 'BaseVision.html' %}
 {% load static %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/disqus.css' %}">
+<link rel="stylesheet" href="{% static 'css/disqus.css' %}">
+<link rel="stylesheet" href="{% static 'css/pageReading.css' %}">
 {% endblock %}
 {% block titulo %}{{ manga.title }} - Capítulo {{ chapter.order }} por Manga Vision{% endblock %}
 {% block body %}
+<ul class="three-column-ul">
+    <li class="column-item">
+    </li>
+    <li class="column-item">
+        <div class="accordion mx-auto" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <ul class="info-reading mx-auto">
+                            <li><span class="titleR">{{ manga.title }}</span></li>
+                            <li><span class="authorR">{{ manga.author }}</span></li>
+                        </ul>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Capítulos
+                            </button>
+                            <ul class="dropdown-menu">
+                                {% for cap in chapter %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/manga/solo-leveling/ler/capitulo-{{cap.order}}">Cap. {{ cap.order }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul class="ullistR">
+                            <li>
+                                {% for genre in genre %}
+                                <span class="genreR">{{ genre }}</span>
+                                {% endfor %}
+                            </li>
+                            <li><span class="sinopseR">{{ manga.sinopse }}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+<div class="manga-page" style="padding-top: 20px;">
+    {% for pg in page %}
+    <picture reader-page="{{ pg.order }}">
+        <img class="manga-image" title="{{ manga.title }} - Cápitulo {{ chapter.order}} Página - {{pg.order}}"
+            alt="{{ manga.title }} - Cápitulo {{ chapter.order}} Página - {{pg.order}}" src="{{ pg.imagem.url }}">
+    </picture>
+    {% endfor %}
+</div>
+<button onclick="voltarAoTopo()" id="btnVoltarAoTopo" title="Voltar ao topo"><img class="arrow"
+        src="{% static 'img/seta-cima.png' %}" alt=""></button>
+{% with request.build_absolute_uri as disqus_url %}
+<div id="disqus_thread"></div>
+<script>
 
-    <div class="manga-page" style="padding-top: 20px;">
-        {% for pg in page %}
-            <picture reader-page="{{ pg.order }}">
-                <img class="manga-image" title="{{ manga.title }} - Cápitulo {{ chapter.order}} Página - {{pg.order}}" alt="{{ manga.title }} - Cápitulo {{ chapter.order}} Página - {{pg.order}}" src="{{ pg.imagem.url }}">
-            </picture>
-        {% endfor %}
-    </div>
-    <button onclick="voltarAoTopo()" id="btnVoltarAoTopo" title="Voltar ao topo"><img class="arrow" src="{% static 'img/seta-cima.png' %}" alt=""></button>
-    {% with request.build_absolute_uri as disqus_url %}
-        <div id="disqus_thread"></div>
-        <script>
+    var disqus_config = function () {
+        this.page.url = "{{ disqus_url }}";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "{{ disqus_url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
 
-            var disqus_config = function () {
-            this.page.url = "{{ disqus_url }}";  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = "{{ disqus_url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://manga-vision.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    {% endwith %}
-    <script src="{% static 'js/button_up.vision.js' %}"></script>
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://manga-vision.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+        Disqus.</a></noscript>
+{% endwith %}
+<script src="{% static 'js/button_up.vision.js' %}"></script>
 {% endblock %}

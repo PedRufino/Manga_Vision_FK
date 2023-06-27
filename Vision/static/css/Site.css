@@ -165,14 +165,6 @@ body {
 /* Fim do Fundo do Site */
 
 /* Image Caps */
-.manga-page img{
-    max-width: 100%;
-    margin: 0 auto;
-    display: block;
-    cursor: pointer;
-    padding: 0;
-}
-
 @media screen and (max-width: 850px) {
     .mg_site {
         margin: 0 66px;

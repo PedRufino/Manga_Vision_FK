@@ -13,7 +13,7 @@ urlpatterns = [
     path("manga/<str:slug_>/<str:rate>", save_rating, name="manga_info"),
     path(
         "manga/<str:slug_>/ler/capitulo-<int:cap_>",
-        chapter_reading,
+        ChapterReadingView.as_view(),
         name="manga_chapter",
     ),
 ]
